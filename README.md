@@ -10,4 +10,5 @@
 
 ## Team Roles
 1. Ben Jackson - Lead Programmer and UI Design
-2. Trivon Etheridge - Documentation & Data Model
+2. **Trivon Etheridge** - Data Model & Documentation :)
+
