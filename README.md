@@ -4,9 +4,9 @@
 [FreeRadicals Repo](https://github.com/GGC-SD/FreeRadicals)
 
 ## Progress Tracking Tools
+JIRA or Trello
 
 ## Other Comunication Tools
-
 [Discord](https://discord.gg/tSE9q34)
 
 ## Team Roles
