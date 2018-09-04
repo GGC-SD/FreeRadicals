@@ -10,6 +10,6 @@
 [Discord](https://discord.gg/tSE9q34)
 
 ## Team Roles
-1. Ben Jackson - Lead Programmer and UI Design
+1. **Ben Jackson** - *Lead Programmer and UI Design*
 2. **Trivon Etheridge** - Data Model & Documentation 
 3. Bruce Carson - Data modeler
