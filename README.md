@@ -11,5 +11,5 @@
 
 ## Team Roles
 1. **Ben Jackson** - *Lead Programmer and UI Design* :pisces:
-2. **Trivon Etheridge** - Data Model & Documentation :cancer:
+2. **Trivon Etheridge** :strawberry: - Data Model & Documentation :cancer:
 3. Bruce Carson - Data modeler
