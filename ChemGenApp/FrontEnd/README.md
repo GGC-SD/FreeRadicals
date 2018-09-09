@@ -6,11 +6,11 @@
 2. In the **ChemGenApp** folder, run the command **npm i -g @angular/cli@6.2.1**.
 3. In the **ChemGenApp** folder, run the command **ng new FrontEnd --style=scss**. The *style* argument is important
 4. Navigate to the **FrontEnd** folder that was generated in the previous command.
-5. In the **FrontEnd* folder, run the command **npm install npm**. *This will update Node Package Manager, **not** Node.js*
-6. In the **FrontEnd* folder, run the command **npm install boostrap@4.1.3**.
-7. In the **FrontEnd* folder, run the command **npm install jquery@3.3.1**.
-8. In the **FrontEnd* folder, run the command **npm install popper.js@1.14.4**.
-9. In the **FrontEnd* folder, run the command **npm install @ng-bootstrap/ng-boostrap@3.2.0**.
+5. In the **FrontEnd** folder, run the command **npm install npm**. *This will update Node Package Manager, **not** Node.js*
+6. In the **FrontEnd** folder, run the command **npm install boostrap@4.1.3**.
+7. In the **FrontEnd** folder, run the command **npm install jquery@3.3.1**.
+8. In the **FrontEnd** folder, run the command **npm install popper.js@1.14.4**.
+9. In the **FrontEnd** folder, run the command **npm install @ng-bootstrap/ng-boostrap@3.2.0**.
 10. From Git Bash or Command Prompt, run the command **ng serve** and then use your browser to navifate to **localhost:4200** to test installation.
 
 ## Development server
