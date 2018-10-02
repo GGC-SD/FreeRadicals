@@ -4,5 +4,6 @@
 	Input the data into the form and the output will show on the answer key.
 </div>
 <br>
-<app-stoichiometry-form class="left"></app-stoichiometry-form>
-<app-answer-key class="right"></app-answer-key>
+<!-- [answer]="answer" syntax passes data bewteen parent and child components-->
+<app-stoichiometry-form class="left" [answer]="answer"></app-stoichiometry-form>
+<app-answer-key class="right" [answer]="answer"></app-answer-key>

@@ -1,15 +1,5 @@
 <div class="header">Answer Key</div>
-<ng-container>
+<ng-container *ngIf="displayKey">
   <br>
-  <table>
-    <th>1. NaBr + MgOH => MgBr + NaOH</th>
-    <tr>
-      <td>Answer 1</td>
-      <td>Answer 2</td>
-    </tr>
-    <tr>
-      <td>Answer 3</td>
-      <td>Answer 4</td>
-    </tr>
-  </table>
+  {{ answer.anion1 }}{{answer.cation1}} + {{ answer.anion2}}{{ answer.cation2 }} => {{ answer.anion1 }}{{ answer.cation2 }} + {{ answer.anion2 }}{{ answer.cation1 }}
 </ng-container>
