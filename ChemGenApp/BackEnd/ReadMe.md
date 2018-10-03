@@ -1,6 +1,13 @@
-Future locations for installation of backed instructions.
+#Installation of Backend Instructions#
+##Notes##
+Please note that this is subject to change, as we may need more stuff to be installed on the backend later
+##Instructions##
+1. Navigate to the Backend folder
+2. run npm install --save-dev babel-cli babel-preset-env
+3. run npm install --save-dev babel-watch
+4. run npm install express
+ - This is where the tutorial installed cors and mongoose, which I did not, as I did not see the reason.  As we are not using a database at the current time.
+ - As a reference, the commands for that would be npm install mongoose and npm install cors
+5. run npm run dev
 
-This is almost the same as what was done in the tutorial that was shown in the "Coding the Smart Way" thing, section 2.
-
-I'll go through and add this at a later date.  Most likely when I realize I don't remember how to do it when I try to install everything onto the test branch.
-It's currently 2:43 am, and I don't really want to do it right now.  Hungry and tired.
+This should start the backend server on localhost:4000
