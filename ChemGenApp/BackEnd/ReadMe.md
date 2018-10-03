@@ -1,7 +1,11 @@
-#Installation of Backend Instructions#
-##Notes##
+**Installation of Backend Instructions
+
+**Notes
+
 Please note that this is subject to change, as we may need more stuff to be installed on the backend later
-##Instructions##
+
+**Instructions
+
 1. Navigate to the Backend folder
 2. run npm install --save-dev babel-cli babel-preset-env
 3. run npm install --save-dev babel-watch
