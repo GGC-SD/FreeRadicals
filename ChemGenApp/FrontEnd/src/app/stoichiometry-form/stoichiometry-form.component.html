@@ -1,27 +1,27 @@
-<form>
-  <select placeholder="Cation 1">
+<form [formGroup]="formGroup">
+  <select formControlName="cation1">
     <option value="Na">Na</option>
     <option value="Li">Li</option>
     <option value="NH4">NH4</option>
   </select>
-  <select placeholder="Anion 1">
+  <select formControlName="anion1">
     <option value="Br">Br</option>
     <option value="I">I</option>
     <option value="NO3">NO3</option>
   </select>
-  <input placeholder="Grams of First Compound">
+  <input formControlName="grams1" placeholder="Grams of First Compound">
   <br><br>
-  <select placeholder="Cation 2">
+  <select formControlName="cation2">
     <option value="Mg">Mg</option>
     <option value="Ca">Ca</option>
     <option value="Fe(II)">Fe(II)</option>
   </select>
-  <select placeholder="Anion 2">
+  <select formControlName="anion2">
     <option value="OH">OH</option>
     <option value="O2">O2</option>
     <option value="ClO3">ClO3</option>
   </select>
-  <input placeholder="Grams of Second Compound">
+  <input formControlName="grams2" placeholder="Grams of Second Compound">
   <br><br>
-  <button (click)="setAnswerKey()">Calculate</button>
+  <label (click)="setAnswerKey()">Calculate</label>
 </form>

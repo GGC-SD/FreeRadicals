@@ -10,15 +10,10 @@ import { AnswerKey } from '../models/answer-key.model';
 export class AnswerKeyComponent implements OnInit {
 
   // @Input needed so answer can be seen by both components
-  @Input()
-  private answer: AnswerKey;
-
-  private displayKey: boolean;
+  @Input() private answer: AnswerKey;
 
   constructor() { }
 
   ngOnInit() {
-    this.displayKey = false;
   }
-
 }

@@ -13,9 +13,5 @@ export class AppComponent implements OnInit {
   private answer: AnswerKey = new AnswerKey();
 
   ngOnInit() {
-    this.answer.anion1 = '';
-    this.answer.cation1 = '';
-    this.answer.anion2 = '';
-    this.answer.cation2 = '';
   }
 }

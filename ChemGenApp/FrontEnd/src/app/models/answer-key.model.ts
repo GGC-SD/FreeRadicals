@@ -6,6 +6,21 @@ export class AnswerKey {
     grams1: number;
     anion2: String;
     cation2: String;
+    grams2: number;
+    displayKey: boolean;
 
-    constructor() { }
+    constructor() {
+        this.displayKey = false;
+     }
+
+    // Prints all the properties to the console
+    // Used for debugging
+    public printProperties(): void {
+        console.log(this.anion1);
+        console.log(this.cation1);
+        console.log(this.grams1);
+        console.log(this.anion2);
+        console.log(this.cation2);
+        console.log(this.grams2);
+    }
 }
