@@ -1,0 +1,17 @@
+[{
+	"Li": {
+		"name": "Lithium",
+		"atomic mass": 1.003,
+		"charge": 1
+	},
+	"Na": {
+		"name": "Sodium",
+		"atomic mass": 1.543,
+		"charge": 1
+	},
+	"Ca": {
+		"name": "Calcium",
+		"atomic mass": 2.113,
+		"charge": 2
+	}
+}]
