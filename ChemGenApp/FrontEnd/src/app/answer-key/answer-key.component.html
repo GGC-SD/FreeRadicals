@@ -1,5 +1,35 @@
 <div class="header">Answer Key</div>
 <ng-container *ngIf="answer.displayKey">
   <br>
-  {{ answer.anion1 }}{{answer.cation1}} + {{ answer.anion2}}{{ answer.cation2 }} => {{ answer.anion1 }}{{ answer.cation2 }} + {{ answer.anion2 }}{{ answer.cation1 }}
+  {{ answer.cation1 }}{{ answer.anion1 }}(aq) + {{ answer.cation2 }}{{ answer.anion2 }}(aq) => {{ answer.cation2 }}{{ answer.anion1 }}(aq) + {{ answer.cation1 }}{{ answer.anion2 }}(aq)
+  <br><br>
+  mole ratio of product {{ answer.cation2 }}{{ answer.anion1 }} to reactant {{ answer.cation1 }}{{ answer.anion1 }} is: 1.0
+  <br>
+  mole ratio of product {{ answer.cation2 }}{{ answer.anion1 }} to reactant {{ answer.cation2 }}{{ answer.anion2 }} is: 1.0
+  <br>
+  mole ratio of product {{ answer.cation1 }}{{ answer.anion2 }} to reactant {{ answer.cation1 }}{{ answer.anion1 }} is: 1.0
+  <br>
+  mole ratio of product {{ answer.cation1 }}{{ answer.anion2 }} to reactant {{ answer.cation2 }}{{ answer.anion2 }} is: 1.0
+  <br><br>
+  The formula weight for {{ answer.cation2 }}{{ answer.anion1 }} is: 86.844
+  <br>
+  The formula weight for {{ answer.cation1 }}{{ answer.anion2 }} is: 58.439
+  <br><br>
+  0.236 moles of {{ answer.cation1 }}{{ answer.anion1 }} yields 0.236 moles of {{ answer.cation2 }}{{ answer.anion1 }}
+  <br>
+  0.236 moles of {{ answer.cation1 }}{{ answer.anion1 }} yields 0.236 moles of {{ answer.cation1 }}{{ answer.anion2 }}
+  <br>
+  0.097 moles of {{ answer.cation2 }}{{ answer.anion2 }} yields 0.097 moles of {{ answer.cation2 }}{{ answer.anion1 }}
+  <br>
+  0.097 moles of {{ answer.cation2 }}{{ answer.anion2 }} yields 0.097 moles of {{ answer.cation1 }}{{ answer.anion2 }}
+  <br><br>
+  The limiting reactant is: {{ answer.cation2 }}{{ answer.anion2 }}
+  <br>
+  {{ answer.cation2 }}{{ answer.anion2 }} yields 8.440 grams of {{ answer.cation2 }}{{ answer.anion1 }} and 5.680 grams of {{ answer.cation1 }}{{ answer.anion2 }}
+  <br>
+  The grams used up is: 4.120
+  <br>
+  The amount of {{ answer.cation1 }}{{ answer.anion1 }} is 5.880 grams
+  <br>
+  the sum of excess plus used reagents 20.0 ought to equal the grams of compound 1 {{ answer.grams1 }} and grams of compound 2 {{ answer.grams2 }}
 </ng-container>
