@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { AnswerKey } from '../models/answer-key.model';
 
 @Component({
   selector: 'app-answer-key',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnswerKeyComponent implements OnInit {
 
+  // @Input needed so answer can be seen by both components
+  @Input() private answer: AnswerKey;
+
   constructor() { }
 
   ngOnInit() {
   }
-
 }
