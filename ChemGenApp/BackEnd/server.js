@@ -14,8 +14,8 @@ const app = express();
 const router = express.Router();
 
 // This stuff is the code to grab the json files so that they can be sent to the Angular frontend
-const anionData = require('./ElementData-TESTFOLDER-/anionsTESTFILE.json');
-const cationData = require('./ElementData-TESTFOLDER-/cationsTESTFILE.json');
+const anionData = require('./ElementData/anions.json');
+const cationData = require('./ElementData/cations.json');
 //const elementData = require('path/to/elementData.json');
 
 //app.use(cors());
