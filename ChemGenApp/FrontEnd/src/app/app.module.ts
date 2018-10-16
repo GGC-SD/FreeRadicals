@@ -2,10 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { StoichiometryFormComponent } from './stoichiometry-form/stoichiometry-form.component';
 import { AnswerKeyComponent } from './answer-key/answer-key.component';
+import { ElementsService } from './services/elements.service';
 
 const routes: Routes = [
   // { path: '', redirectTo: '000000', pathMatch: 'full' },
@@ -24,9 +26,10 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ElementsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

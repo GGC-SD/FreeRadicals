@@ -5,10 +5,10 @@
 
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
-// import cors from 'cors'
 // import mongoose from 'mongoose';
-// both of the commented imports require packages which I have not installed.  They are used to access databases
+// the commented import requires a package which I have not installed.  It is used to access databases
 
 const app = express();
 const router = express.Router();
@@ -18,7 +18,7 @@ const anionData = require('./ElementData-TESTFOLDER-/anionsTESTFILE.json');
 const cationData = require('./ElementData-TESTFOLDER-/cationsTESTFILE.json');
 //const elementData = require('path/to/elementData.json');
 
-//app.use(cors());
+app.use(cors());
 app.use(bodyParser.json());
 
 /* This code is basically what would be needed to access a MongoDB database

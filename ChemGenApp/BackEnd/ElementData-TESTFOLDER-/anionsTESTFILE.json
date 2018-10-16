@@ -1,17 +1,20 @@
-[{
-	"Br": {
+[
+	{
+		"symbol": "Br",
 		"name": "Bromine",
 		"atomic mass": 2.003,
 		"charge": -1
 	},
-	"CO3": {
-		"name": "Carbon Trioxide??? FIX THIS NAME PLOX",
+	{
+		"symbol": "CO2",
+		"name": "Carbon Dioxide",
 		"atomic mass": 1.463,
 		"charge": -2
 	},
-	"I": {
+	{
+		"symbol": "I",
 		"name": "Iodine",
 		"atomic mass": 2.233,
 		"charge": -1
 	}
-}]
+]
