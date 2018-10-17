@@ -10,11 +10,11 @@ import { AnswerKeyComponent } from './answer-key/answer-key.component';
 import { ElementsService } from './services/elements.service';
 
 const routes: Routes = [
-  // { path: '', redirectTo: '000000', pathMatch: 'full' },
+  // { path: '', redirectTo: 'answer', pathMatch: 'full' },
   // this is the beginning of the ID recognition, will need to have something like :id
-  // { path: '000000', component: AppComponent }
+  // { path: 'answer', component: AnswerKeyComponent },
   // this is basically it, but we don't have it being recieved, so i'm just forcing the default to go to 000000 for now
-  // { path: ':id', component: AppComponent }
+  // { path: ':id', component: StoichiometryFormComponent }
 ];
 
 @NgModule({
