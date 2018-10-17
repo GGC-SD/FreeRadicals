@@ -5,7 +5,11 @@
 
 import express from 'express';
 import bodyParser from 'body-parser';
+<<<<<<< HEAD
 import cors from 'cors';
+=======
+import cors from 'cors'
+>>>>>>> Testing
 
 // import mongoose from 'mongoose';
 // the commented import requires a package which I have not installed.  It is used to access databases
@@ -14,8 +18,10 @@ const app = express();
 const router = express.Router();
 
 // This stuff is the code to grab the json files so that they can be sent to the Angular frontend
-const anionData = require('./ElementData/anions.json');
-const cationData = require('./ElementData/cations.json');
+const anionData = require('./ElementData/UpdatedAnionsTest.json');
+const cationData = require('./ElementData/UpdatedCationsTest.json');
+const solubility1Data = require('./ElementData/SolubilityTest.json');
+const solubility2Data = require('./ElementData/SolubilityTest2.json');
 //const elementData = require('path/to/elementData.json');
 
 app.use(cors());
@@ -37,6 +43,14 @@ router.route('/anions').get((req, res) => {
 
 router.route('/cations').get((req, res) => {
 	res.json(cationData);
+});
+
+router.route('/solubility1').get((req, res) => {
+	res.json(solubility1Data);
+});
+
+router.route('/solubility2').get((req, res) => {
+	res.json(solubility2Data);
 });
 
 /* NOT USED YET, NO FILE FOR IT TO REFERENCE, WILL CAUSE ERRORS IF REFERENCED
