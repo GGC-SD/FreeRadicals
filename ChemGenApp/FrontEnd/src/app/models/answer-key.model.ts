@@ -1,33 +1,32 @@
 // Answer key to be used to hold the data inputed by the professors
 // and the answers calculated by the application
 export class AnswerKey {
-    anion1: String;
-    cation1: String;
-    grams1: number;
-    anion2: String;
-    cation2: String;
-    grams2: number;
-    displayKey: boolean;
+	anion1: String;
+	cation1: String;
+	grams1: number;
+	anion2: String;
+	cation2: String;
+	grams2: number;
+	displayKey: boolean;
 
-    constructor() {
-        this.displayKey = false;
-     }
+	constructor() {
+		this.displayKey = false;
+	}
 
-    // Prints all the properties to the console
-    // Used for debugging
-    public printProperties(): void {
-        console.log(this.anion1);
-        console.log(this.cation1);
-        console.log(this.grams1);
-        console.log(this.anion2);
-        console.log(this.cation2);
-        console.log(this.grams2);
-    }
+	// Prints all the properties to the console
+	// Used for debugging
+	public printProperties(): void {
+		console.log(this.anion1);
+		console.log(this.cation1);
+		console.log(this.grams1);
+		console.log(this.anion2);
+		console.log(this.cation2);
+		console.log(this.grams2);
+	}
 	
 	// This method is meant to function like his reaction_solubility(a) function
 	// It generates each item's solubility information.
 	public solubilityGeneration() {
-		
 		// hardcoded solubility information.  Should be fine for now I guess.  Please replace this with retreiving from the backend asap
 		var txt = '{ "Li" :{ "Cl": "aq", "Br": "aq", "I" : "aq", "(CO3)": "aq", "(ClO3)": "aq", "(OH)": "aq", "(NO3)": "aq", "(PO4)": "aq", "(SO4)": "aq", "(Cr2O7)": "aq"}, "Na" :{ "Cl": "aq", "Br": "aq", "I" : "aq", "(CO3)": "aq", "(ClO3)": "aq", "(OH)": "aq", "(NO3)":"aq", "(PO4)": "aq", "(SO4)": "aq", "(Cr2O7)": "aq"}, "K" :{ "Cl": "aq", "Br": "aq", "I" : "aq", "(CO3)": "aq", "(ClO3)": "aq", "(OH)": "aq", "(NO3)":"aq", "(PO4)": "aq", "(SO4)": "aq", "(Cr2O7)": "aq"}, "(NH4)" :{ "Cl": "aq", "Br": "aq", "I" : "aq", "(CO3)": "aq", "(ClO3)": "aq", "(OH)": "aq", "(NO3)":"aq", "(PO4)": "aq", "(SO4)": "aq", "(Cr2O7)": "aq"}, "Mg" :{ "Cl": "aq", "Br": "aq", "I" : "aq", "(CO3)": "s", "(ClO3)": "aq", "(OH)": "s", "(NO3)":"aq", "(PO4)": "s", "(SO4)": "aq", "(Cr2O7)": "s"}, "Ca" :{ "Cl": "aq", "Br": "aq", "I" : "aq", "(CO3)": "s", "(ClO3)": "aq", "(OH)": "s", "(NO3)":"aq", "(PO4)": "s", "(SO4)": "aq", "(Cr2O7)": "s"}, "Sr" :{ "Cl": "aq", "Br": "aq", "I" : "aq", "(CO3)": "s", "(ClO3)": "aq", "(OH)": "aq", "(NO3)":"aq", "(PO4)": "s", "(SO4)": "s", "(Cr2O7)": "s"}, "Ba" :{ "Cl": "aq", "Br": "aq", "I" : "aq", "(CO3)": "s", "(ClO3)": "aq", "(OH)": "aq", "(NO3)":"aq", "(PO4)": "s", "(SO4)": "s", "(Cr2O7)": "s"}, "Zn" :{ "Cl": "aq", "Br": "aq", "I" : "aq", "(CO3)": "s", "(ClO3)": "aq", "(OH)": "aq","O2" : "s", "(NO3)":"aq", "(PO4)": "s", "(SO4)": "aq", "(Cr2O7)": "s"}, "Fe(II)" :{ "Cl": "aq", "Br": "aq", "I" : "aq", "(CO3)": "I", "(ClO3)": "aq", "(OH)": "aq","O2" : "s", "(NO3)":"aq", "(PO4)": "s", "(SO4)": "aq", "(Cr2O7)": "s"}, "Cu" :{ "Cl": "aq", "Br": "aq", "I" : "aq", "(CO3)": "s", "(ClO3)": "aq", "(OH)": "aq","O2" : "s", "(NO3)":"aq", "(PO4)": "s", "(SO4)": "aq", "(Cr2O7)": "s"}, "Al" :{ "Cl": "aq", "Br": "aq", "I" : "aq", "(CO3)": "s", "(ClO3)": "aq", "(OH)": "aq","O2" : "s", "(NO3)":"aq", "(PO4)": "s", "(SO4)": "aq", "(Cr2O7)": "s"}, "Fe(III)" :{ "Cl": "aq", "Br": "aq", "I" : "aq", "(CO3)": "s", "(ClO3)": "aq", "(OH)": "aq","O2" : "s", "(NO3)":"aq", "(PO4)": "s", "(SO4)": "s", "(Cr2O7)": "s"}, "Pb" : {"Cl": "s",  "Br": "s", "I" : "s", "(CO3)": "s", "(ClO3)": "aq", "(OH)": "s","O2" : "s", "(NO3)":"aq", "(PO4)": "s", "(SO4)": "s", "(Cr2O7)": "s"}, "Ag" : {"Cl": "s",  "Br": "s", "I" : "s", "(CO3)": "s", "(ClO3)": "aq", "(OH)": "s","O2" : "s", "(NO3)":"aq", "(PO4)": "s", "(SO4)": "s", "(Cr2O7)": "s"}}';
 		var solubilityData = JSON.parse(txt);
@@ -88,10 +87,10 @@ export class AnswerKey {
 		// At this point, I have the strings that properly represent the products and reactants, including the subscripts
 		
 		// Not sure what this stuff is supposed to mean, so I can't come up with better names
-		z = 1.0;
-		w = z*(ion_charge[2]/ion_charge[0]);
-		x = -ion_charge[2]/-ion_charge[3];
-		z = ion_charge[2]*x/ion_charge[0];
+		var z = 1.0;
+		var w = z*(ion_charge[2]/ion_charge[0]);
+		var x = -ion_charge[2]/-ion_charge[3];
+		var z = ion_charge[2]*x/ion_charge[0];
 		
 		// The list of information that is sent off to wherever.
 		var information = [w, reactant1, x, reactant2, y, product1, z, product2, ion_charge[0], -ion_charge[1], ion_charge[2], -ion_charge[3]];
