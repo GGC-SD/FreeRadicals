@@ -5,11 +5,7 @@
 
 import express from 'express';
 import bodyParser from 'body-parser';
-<<<<<<< HEAD
 import cors from 'cors';
-=======
-import cors from 'cors'
->>>>>>> Testing
 
 // import mongoose from 'mongoose';
 // the commented import requires a package which I have not installed.  It is used to access databases
