@@ -23,7 +23,7 @@ export class AnswerKey {
 		console.log(this.cation2);
 		console.log(this.grams2);
 	}
-	
+	/*
 	// This method is meant to function like his reaction_solubility(a) function
 	// It generates each item's solubility information.
 	public solubilityGeneration() {
@@ -61,7 +61,7 @@ export class AnswerKey {
 		var w, x, y, z, reactant1, reactant2, product1, product2;
 		var ion_charge = [];
 		
-		/** WARNING: THIS PART OF THE CODE ASSUMES NO ()'s ARE ON THE VALUES. WE MAY NEED TO HANDLE THIS SPECILALLY */
+		/** WARNING: THIS PART OF THE CODE ASSUMES NO ()'s ARE ON THE VALUES. WE MAY NEED TO HANDLE THIS SPECILALLY 
 		
 		// Temp testing code - Seems to calm the compilation issue, but I'm not sure why doing cation: String; causes the incompatibility...
 		var cat1 = this.cation1 + '';
@@ -75,7 +75,7 @@ export class AnswerKey {
 		ion_charge.push(charge_table[cat2]);
 		ion_charge.push(charge_table[an2]);
 
-		/** NOTE: */
+		/** NOTE:
 		// To simplify and shrink this part of the code, I am assuming there will be no zero charge ions, and that the largest absolute value of a charge will be 3.
 		// Please notify me if something about this goes wrong, or is wrong, and I will change it.
 		var chargeTemp = []; // Temporary storage of the unicode subscript for the compound
@@ -142,7 +142,7 @@ export class AnswerKey {
 		f[3] is reactant molecule #2 (this.cation2 + this.anion2 with subscript stuff)
 		f[5] is product molecule #1 (this.cation1 + this.anion2 with subscript stuff)
 		f[7] is product molecule #2 (this.cation2 + this.anion1 with subscript stuff)
-		*/
+		
 		
 		//This is to generate the mole ratios used in the below print statements
 		var mole_P1toR1 = (f[4]/f[0]);
@@ -158,7 +158,7 @@ export class AnswerKey {
 		print("mole ratio of product {} to reactant {} is: {}".format(f[7], f[1], mole_P2toR1))
 		print("mole ratio of product {} to reactant {} is: {}".format(f[7], f[3], mole_P2toR2))
 		print("\n")
-		*/
+		
 		
 		// FORMULA WEIGHT
 		var FW_product_1 = (listOfWeights[0]*(f[11]) + listOfWeights[3]*(f[8]));
@@ -168,7 +168,7 @@ export class AnswerKey {
 		print("The formula weight for product 1 is:", FW_product_1)
 		print("The formula weight for product 2 is: ", FW_product_2)
 		print("\n")
-		*/
+		
 		
 		// PREPARE FOR LIMITING REACTANT
 		var mol_compound_1 = this.grams1/(listOfWeights[0]*(f[9]) + listOfWeights[1]*(f[8]));
@@ -186,7 +186,7 @@ export class AnswerKey {
 		print("{} moles of {} yields {} for moles of {}". format(mol_compound_2, f[3], P1_mols_R2, f[5]))
 		print("{} moles of {} yields {} for moles of {}". format(mol_compound_2, f[3], P2_mols_R2, f[7]))
 		print("\n")
-		*/
+		
 		
 		// DETERMINING LIMITING REACTANT
 		if (P1_mols_R1 < P1_mols_R2 && P2_mols_R1 < P2_mols_R2) {
@@ -207,7 +207,7 @@ export class AnswerKey {
 			print("The limiting reactant {} yields  {} grams of {}  and  {} grams of {}".format(f[1], Yield_P1, f[5], Yield_P2, f[7]))
 			print(" the amount of excess reactant {} is {}  grams". format(f[3], excess_grams))
 			print("The sum of masses {} should be close to the sum of compound 1 {} + sum of compound 2 {}".format(sum_of_masses, a[4], a[5]))
-			*/
+			
 		} else {
 			
 			// Most of this stuff is almost purely what he had in his code, but reformatted to work in javascript and re-organized
@@ -233,7 +233,8 @@ export class AnswerKey {
 			print("\nThe grams used up is:", grams_used)
 			print("\nthe amount of excess reactant {} is {}  grams". format(f[1], excess_grams))	
 			print("\n The sum of excess plus used reagents {} ought to equal the grams of compound 1 {} and grams of compound 2 {}".format(sum_of_masses, a[4], a[5]))	
-			*/
+			
 		}
 	}
+	*/
 }

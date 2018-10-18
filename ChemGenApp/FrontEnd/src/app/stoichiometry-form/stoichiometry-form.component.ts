@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 
 import { AnswerKey } from '../models/answer-key.model';
+import { ElementsService } from '../services/elements.service';
 
 @Component({
   selector: 'app-stoichiometry-form',
@@ -23,11 +24,20 @@ export class StoichiometryFormComponent implements OnInit {
     grams2: new FormControl()
   });
 
-  constructor(private formBuilder: FormBuilder) {
+  private anions: any = [];
+  private cations: any = [];
+
+  constructor(private formBuilder: FormBuilder, private elements: ElementsService) {
     this.createForm();
    }
 
   ngOnInit() {
+    this.elements.getAnions().subscribe(anions => {
+      this.anions = anions;
+    });
+    this.elements.getCations().subscribe(cations => {
+      this.cations = cations;
+    });
   }
 
   // Gets the form input and sets the answer key properties
@@ -44,11 +54,11 @@ export class StoichiometryFormComponent implements OnInit {
   // Creates the form and sets default prioperties
   private createForm(): void {
     this.formGroup = this.formBuilder.group({
-      cation1: ['Na'],
+      cation1: ['Li'],
       anion1: ['Br'],
       grams1: '',
-      cation2: ['Mg'],
-      anion2: ['OH'],
+      cation2: ['Na'],
+      anion2: ['I'],
       grams2: ''
     });
   }

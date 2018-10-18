@@ -1,25 +1,17 @@
 <form [formGroup]="formGroup">
   <select formControlName="cation1">
-    <option value="Na">Na</option>
-    <option value="Li">Li</option>
-    <option value="NH4">NH4</option>
+      <option *ngFor="let cation of cations" value="{{ cation.symbol }}">{{ cation.symbol }}</option>
   </select>
   <select formControlName="anion1">
-    <option value="Br">Br</option>
-    <option value="I">I</option>
-    <option value="NO3">NO3</option>
+    <option *ngFor="let anion of anions" value="{{ anion.symbol }}">{{ anion.symbol }}</option>
   </select>
   <input formControlName="grams1" placeholder="Grams of First Compound">
   <br><br>
   <select formControlName="cation2">
-    <option value="Mg">Mg</option>
-    <option value="Ca">Ca</option>
-    <option value="Fe(II)">Fe(II)</option>
+      <option *ngFor="let cation of cations" value="{{ cation.symbol }}">{{ cation.symbol }}</option>
   </select>
   <select formControlName="anion2">
-    <option value="OH">OH</option>
-    <option value="O2">O2</option>
-    <option value="ClO3">ClO3</option>
+      <option *ngFor="let anion of anions" value="{{ anion.symbol }}">{{ anion.symbol }}</option>
   </select>
   <input formControlName="grams2" placeholder="Grams of Second Compound">
   <br><br>
