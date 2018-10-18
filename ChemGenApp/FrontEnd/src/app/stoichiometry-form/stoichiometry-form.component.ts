@@ -58,7 +58,7 @@ export class StoichiometryFormComponent implements OnInit {
       anion1: ['Br'],
       grams1: '',
       cation2: ['Na'],
-      anion2: ['CO2'],
+      anion2: ['I'],
       grams2: ''
     });
   }
