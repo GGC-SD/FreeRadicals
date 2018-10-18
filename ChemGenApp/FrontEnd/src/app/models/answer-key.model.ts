@@ -100,10 +100,10 @@ export class AnswerKey {
 		// At this point, I have the strings that properly represent the products and reactants, including the subscripts
 		
 		// Not sure what this stuff is supposed to mean, so I can't come up with better names
-		var z = 1.0;
-		var w = z*(ion_charge[2]/ion_charge[0]);
-		var x = -ion_charge[2]/-ion_charge[3];
-		var z = ion_charge[2]*x/ion_charge[0];
+		z = 1.0;
+		w = z*(ion_charge[2]/ion_charge[0]);
+		x = -ion_charge[2]/-ion_charge[3];
+		z = ion_charge[2]*x/ion_charge[0];
 		
 		// The list of information that is sent off to wherever.
 		var information = [w, reactant1, x, reactant2, y, product1, z, product2, ion_charge[0], -ion_charge[1], ion_charge[2], -ion_charge[3]];
