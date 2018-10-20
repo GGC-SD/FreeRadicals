@@ -9,6 +9,17 @@ export class AnswerKey {
 	grams2: number;
 	displayKey: boolean;
 
+	/* This section is all the variables I've added to facilitate transfer over to the HTML.  Remove this comment end to comment it out -->*/
+	reactant1Subscript: String;
+	reactant2Subscript: String;
+	product1Subscript: String;
+	product2Subscript: String;
+	limitingReactant: String;
+	moleRatioP1toR1: any;
+	moleRatioP1toR2: any;
+	moleRatioP2toR1: any;
+	moleRatioP2toR2: any;
+	/* */
 	constructor() {
 		this.displayKey = false;
 	}
@@ -24,7 +35,6 @@ export class AnswerKey {
 		console.log(this.grams2);
 	}
 	
-	/*
 	// This method is meant to function like his reaction_solubility(a) function
 	// It generates each item's solubility information.
 	public solubilityGeneration() {
@@ -35,17 +45,11 @@ export class AnswerKey {
 		// storage for sending the data.
 		var solubility = [];
 		
-		// Temp testing code - Seems to calm the compilation issue, but I'm not sure why doing cation: String; causes the incompatibility...
-		var cat1 = this.cation1 + '';
-		var cat2 = this.cation2 + '';
-		var an1 = this.anion1 + '';
-		var an2 = this.anion2 + '';
-		
 		// add all of the solubility data to the array to be sent where it's needed?
-		solubility.push(solubilityData[cat1][an1]);
-		solubility.push(solubilityData[cat2][an2]);
-		solubility.push(solubilityData[cat1][an2]);
-		solubility.push(solubilityData[cat2][an1]);
+		solubility.push(solubilityData[this.cation1 + ''][this.anion1 + '']);
+		solubility.push(solubilityData[this.cation2 + ''][this.anion2 + '']);
+		solubility.push(solubilityData[this.cation1 + ''][this.anion2 + '']);
+		solubility.push(solubilityData[this.cation2 + ''][this.anion1 + '']);
 		
 		
 		// He sends it off to the main() method only, which is where the actuall stoichiometry is printed
@@ -59,60 +63,51 @@ export class AnswerKey {
 	public molecularNotationGeneration() {
 		// Need the charge table here
 		// Hard coding it for now
-		
-		var charge_table = {Li: 1, Na: 1, K:1, NH4: 1, Mg: 2, Ca: 2, Ba : 2, Zn: 2, FeII: 2, Cu: 2, Al: 3, FeIII: 3, Pb: 2, Ag : 1, Br : -1, I:-1, Cl: -1, NO3 : -1, CO3 : -2, ClO3 : -1, OH : -1, O2: -2, PO4: -3, SO4: -2, Cr2O7: -2};
-		
-		var w, x, y, z, reactant1, reactant2, product1, product2;
-		var ion_charge = [];
-		
-		/** WARNING: THIS PART OF THE CODE ASSUMES NO ()'s ARE ON THE VALUES. WE MAY NEED TO HANDLE THIS SPECILALLY */
-		
-		// Temp testing code - Seems to calm the compilation issue, but I'm not sure why doing cation: String; causes the incompatibility...
-		var cat1 = this.cation1 + '';
-		var cat2 = this.cation2 + '';
-		var an1 = this.anion1 + '';
-		var an2 = this.anion2 + '';
-		
+		var charge_table = {Li: 1, Na: 1, K:1, NH4: 1, Mg: 2, Ca: 2, Ba : 2, Zn: 2, 'Fe(II)': 2, Cu: 2, Al: 3, 'Fe(III)': 3, Pb: 2, Ag : 1, Br : -1, I:-1, Cl: -1, NO3 : -1, CO3 : -2, ClO3 : -1, OH : -1, O2: -2, PO4: -3, SO4: -2, Cr2O7: -2};
+
 		// This should avoid the need for looping through the table, as long as retrieving the object data is possible
-		ion_charge.push(charge_table[cat1]);
-		ion_charge.push(charge_table[an1]);
-		ion_charge.push(charge_table[cat2]);
-		ion_charge.push(charge_table[an2]);
-		
+		var ionCharge = [];
+		ionCharge.push(charge_table[this.cation1 + '']);
+		ionCharge.push(charge_table[this.anion1 + '']);
+		ionCharge.push(charge_table[this.cation2 + '']);
+		ionCharge.push(charge_table[this.anion2 + '']);
+
 		/** NOTE: */
 		// To simplify and shrink this part of the code, I am assuming there will be no zero charge ions, and that the largest absolute value of a charge will be 3.
 		// Please notify me if something about this goes wrong, or is wrong, and I will change it.
 		var chargeTemp = []; // Temporary storage of the unicode subscript for the compound
 		var temp = 0; // used to reduce the Math.abs() calls each loop
-		for (var i = 0; i < ion_charge.length; i++) {
-			temp = Math.abs(ion_charge[i]); // Gets the absolute value of the charge so that I can properly select the subscript
-			if(temp === 1) {
-				chargeTemp[i] = ""; // empty string for 1, since it doesn't get a subscript
-			} else if (temp === 2) {
-				chargeTemp[i] = "\u2082"; // \u2082 is subscript 2
-			} else if (temp === 3) {
-				chargeTemp[i] = "\u2083"; // \u2083 is subscript 3
+		for (var i = 0; i < ionCharge.length; i++) {
+			temp = Math.abs(ionCharge[i]); // Gets the absolute value of the charge so that I can properly select the subscript
+			if(temp == 1) {
+				chargeTemp[i] = ''; // empty string for 1, since it doesn't get a subscript
+			} else if (temp == 2) {
+				chargeTemp[i] = '\u2082'; // \u2082 is subscript 2
+			} else if (temp == 3) {
+				chargeTemp[i] = '\u2083'; // \u2083 is subscript 3
+			} else {
+				chargeTemp[i] = '!!!!! ERROR, CHARGE VALUE NOT HANDLED !!!!!';
 			}
 		}
 		
 		// Combine the strings into the reactants and products
-		reactant1 = (this.cation1 + chargeTemp[1] + this.anion1 + chargeTemp[0]);
-		reactant2 = (this.cation2 + chargeTemp[3] + this.anion2 + chargeTemp[2]);
-		product1 = (this.cation1 + chargeTemp[3] + this.anion2 + chargeTemp[0]);
-		product2 = (this.cation2 + chargeTemp[1] + this.anion1 + chargeTemp[2]);
+		this.reactant1Subscript = (this.cation1 + chargeTemp[1] + this.anion1 + chargeTemp[0]);
+		this.reactant2Subscript = (this.cation2 + chargeTemp[3] + this.anion2 + chargeTemp[2]);
+		this.product1Subscript = (this.cation1 + chargeTemp[3] + this.anion2 + chargeTemp[0]);
+		this.product2Subscript = (this.cation2 + chargeTemp[1] + this.anion1 + chargeTemp[2]);
 		
 		// At this point, I have the strings that properly represent the products and reactants, including the subscripts
 		
 		// Not sure what this stuff is supposed to mean, so I can't come up with better names
-		z = 1.0;
-		w = z*(ion_charge[2]/ion_charge[0]);
-		x = -ion_charge[2]/-ion_charge[3];
-		y = ion_charge[2]*x/ion_charge[0];
+		var z = 1.0;
+		var w = z*(ionCharge[2]/ionCharge[0]);
+		var x = -ionCharge[2]/-ionCharge[3];
+		var y = ionCharge[2]*x/ionCharge[0];
 		
 		// The list of information that is sent off to wherever.
-		var information = [w, reactant1, x, reactant2, y, product1, z, product2, ion_charge[0], -ion_charge[1], ion_charge[2], -ion_charge[3]];
+		var information = [w, x, y, z, ionCharge[0], -ionCharge[1], ionCharge[2], -ionCharge[3]];
 		
-		// Not sure if you need this returned, but the charge information at least needs to be sent to the limiting_stoichiometry funciton's replacement
+		// Not sure if you need this returned, but the charge information at least needs to be sent to the stoichiometryGeneration() function
 		return information;
 	}
 	
@@ -129,31 +124,17 @@ export class AnswerKey {
 		// A list of the weights of the cations and anions
 		var listOfWeights = [];
 		
-		// Temp testing code - Seems to calm the compilation issue, but I'm not sure why doing cation: String; causes the incompatibility...
-		var cat1 = this.cation1 + '';
-		var cat2 = this.cation2 + '';
-		var an1 = this.anion1 + '';
-		var an2 = this.anion2 + '';
-		
 		// load the list with the appropriate values
-		listOfWeights.push(atomicWeights[cat1]);
-		listOfWeights.push(atomicWeights[an1]);
-		listOfWeights.push(atomicWeights[cat2]);
-		listOfWeights.push(atomicWeights[an2]);
-		
-		/** NOTE: This is a reference for filling the strings below
-		f[1] is reactant molecule #1 (this.cation1 + this.anion1 with subscript stuff)
-		f[3] is reactant molecule #2 (this.cation2 + this.anion2 with subscript stuff)
-		f[5] is product molecule #1 (this.cation1 + this.anion2 with subscript stuff)
-		f[7] is product molecule #2 (this.cation2 + this.anion1 with subscript stuff)
-		*/
-		
+		listOfWeights.push(atomicWeights[this.cation1 + '']);
+		listOfWeights.push(atomicWeights[this.anion1 + '']);
+		listOfWeights.push(atomicWeights[this.cation2 + '']);
+		listOfWeights.push(atomicWeights[this.anion2 + '']);
 		
 		//This is to generate the mole ratios used in the below print statements
-		var mole_P1toR1 = (f[4]/f[0]);
-		var mole_P1toR2 = (f[4]/f[2]);
-		var mole_P2toR1 = (f[6]/f[0]);
-		var mole_P2toR2 = (f[6]/f[2]);
+		this.moleRatioP1toR1 = (f[2]/f[0]);
+		this.moleRatioP1toR2 = (f[2]/f[1]);
+		this.moleRatioP2toR1 = (f[3]/f[0]);
+		this.moleRatioP2toR2 = (f[3]/f[1]);
 		// I'm still not entirely sure what the even f[]'s are.  I can't describe them ...
 		
 		/*  He had this code.  I have all the data prepared by this point. Please ask if you have any trouble figuring out what this does. 
@@ -163,26 +144,33 @@ export class AnswerKey {
 		print("mole ratio of product {} to reactant {} is: {}".format(f[7], f[1], mole_P2toR1))
 		print("mole ratio of product {} to reactant {} is: {}".format(f[7], f[3], mole_P2toR2))
 		print("\n")
+
+		seems to say want the following printed out.  Replace the <info> with what the stuff inside the <>'s describe
+
+		"mole ratio of product <this.product1Subscript> to reactant <this.reactant1Subscript> is: <moleRatioP1toR1>"
+		"mole ratio of product <this.product1Subscript> to reactant <this.reactant2Subscript> is: <moleRatioP1toR2>"
+		"mole ratio of product <this.product2Subscript> to reactant <this.reactant1Subscript> is: <moleRatioP2toR1>"
+		"mole ratio of product <this.product2Subscript> to reactant <this.reactant2Subscript> is: <moleRatioP2toR2>"
 		*/
 		
 		// FORMULA WEIGHT
-		var FW_product_1 = (listOfWeights[0]*(f[11]) + listOfWeights[3]*(f[8]));
-		var FW_product_2 = (listOfWeights[2]*(f[9]) + listOfWeights[1]*(f[10]));
+		var product1FormulaWeight = (listOfWeights[0]*(f[7]) + listOfWeights[3]*(f[4]));
+		var product2FormulaWeight = (listOfWeights[2]*(f[5]) + listOfWeights[1]*(f[6]));
 		
 		/* He had this code.  I have everything prepared by this point.  Shouldn't be too hard to understand.
-		print("The formula weight for product 1 is:", FW_product_1)
-		print("The formula weight for product 2 is: ", FW_product_2)
+		print("The formula weight for product 1 is:", product1FormulaWeight)
+		print("The formula weight for product 2 is: ", product2FormulaWeight)
 		print("\n")
 		*/
 		
 		// PREPARE FOR LIMITING REACTANT
-		var mol_compound_1 = this.grams1/(listOfWeights[0]*(f[9]) + listOfWeights[1]*(f[8]));
-		var mol_compound_2 = this.grams2/(listOfWeights[3]*(f[10]) + listOfWeights[2]*(f[11]));
+		var mol_compound_1 = this.grams1/(listOfWeights[0]*(f[5]) + listOfWeights[1]*(f[4]));
+		var mol_compound_2 = this.grams2/(listOfWeights[3]*(f[6]) + listOfWeights[2]*(f[7]))
 		
-		var P1_mols_R1 = mol_compound_1 * mole_P1toR1;
-		var P2_mols_R1 = mol_compound_1 * mole_P2toR1;
-		var P1_mols_R2 = mol_compound_2 * mole_P1toR2;
-		var P2_mols_R2 = mol_compound_2 * mole_P2toR2;
+		var P1_mols_R1 = mol_compound_1 * this.moleRatioP1toR1;
+		var P2_mols_R1 = mol_compound_1 * this.moleRatioP2toR1;
+		var P1_mols_R2 = mol_compound_2 * this.moleRatioP1toR2;
+		var P2_mols_R2 = mol_compound_2 * this.moleRatioP2toR2;
 		
 		/* He had this code.  I have everything prepared by this point.  Please ask if there is anything you have trouble with.
 		print("\n")
@@ -198,15 +186,17 @@ export class AnswerKey {
 			
 			// Most of this stuff is almost purely what he had in his code, but reformatted to work in javascript and re-organized
 			
-			var Yield_P1 = P1_mols_R1 * FW_product_1;
-			var Yield_P2 = P2_mols_R1 * FW_product_2;
+			var Yield_P1 = P1_mols_R1 * product1FormulaWeight;
+			var Yield_P2 = P2_mols_R1 * product2FormulaWeight;
 			
-			var FW_comp2 = (listOfWeights[3]*(f[10]) + listOfWeights[2]*(f[11]));
-			var grams_used = ((f[2]/f[0])*mol_compound_1) * FW_comp2;
+			var FW_comp2 = (listOfWeights[3]*(f[6]) + listOfWeights[2]*(f[7]));
+			var grams_used = ((f[1]/f[0])*mol_compound_1) * FW_comp2;
 			
 			var excess_grams = this.grams2 - grams_used;
 			
 			var sum_of_masses = (excess_grams + Yield_P1 + Yield_P2);
+
+			this.limitingReactant = this.reactant1Subscript;
 			/* He had this code.  I should have everything prepared for outputting this, but if there are any issues, please tell me.
 			print ( "The limiting reactant is: ", f[1])
 			print("The limiting reactant {} yields  {} grams of {}  and  {} grams of {}".format(f[1], Yield_P1, f[5], Yield_P2, f[7]))
@@ -217,18 +207,20 @@ export class AnswerKey {
 			
 			// Most of this stuff is almost purely what he had in his code, but reformatted to work in javascript and re-organized
 			
-			var Yield_P1 = P1_mols_R2 * FW_product_1;
-			var Yield_P2 = P2_mols_R2 * FW_product_2
+			var Yield_P1 = P1_mols_R2 * product1FormulaWeight;
+			var Yield_P2 = P2_mols_R2 * product2FormulaWeight
 			
-			var molR1_to_R2 = f[0]/f[2];
+			var molR1_to_R2 = f[0]/f[1];
 			var molR1 = molR1_to_R2 * mol_compound_2;
 			
-			var FW_comp1 = (listOfWeights[0]*(f[9]) + listOfWeights[1]*(f[8]));
+			var FW_comp1 = (listOfWeights[0]*(f[5]) + listOfWeights[1]*(f[4]));
 			
 			var grams_used = molR1 * FW_comp1;
 			var excess_grams = this.grams1 - grams_used;
+			
 			var sum_of_masses = (excess_grams + Yield_P1 + Yield_P2);
 			
+			this.limitingReactant = this.reactant2Subscript;
 			/* He had this code.
 			print ( "The limiting reactant is: ", f[3])
 			print("The limiting reactant {} yields  {} grams of {}  and  {} grams of {}".format(f[3], Yield_P1, f[5], Yield_P2, f[7]))

@@ -48,6 +48,7 @@ export class StoichiometryFormComponent implements OnInit {
     this.answer.anion2 = this.formGroup.get('anion2').value;
     this.answer.cation2 = this.formGroup.get('cation2').value;
     this.answer.grams2 = this.formGroup.get('grams2').value;
+    this.answer.stoichiometryGeneration();
     this.answer.displayKey = true;
     this.answer.molecularNotationGeneration();
   }
