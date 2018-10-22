@@ -72,10 +72,27 @@ export class StoichiometryFormComponent implements OnInit {
       }
     }
     this.answer.grams2 = this.formGroup.get('grams2').value;
+    this.answer.reactant1AnionSubscript = (this.answer.cation1Charge === Math.abs(this.answer.anion1Charge)) ?
+      '' : this.answer.setSubScript(this.answer.cation1Charge);
+    this.answer.reactact1CationSubscript = (this.answer.cation1Charge === Math.abs(this.answer.anion1Charge)) ?
+      '' : this.answer.setSubScript(Math.abs(this.answer.anion1Charge));
+    this.answer.reactant2AnionSubscript = (this.answer.cation2Charge === Math.abs(this.answer.anion2Charge)) ?
+      '' : this.answer.setSubScript(this.answer.cation2Charge);
+    this.answer.reactact2CationSubscript = (this.answer.cation2Charge === Math.abs(this.answer.anion2Charge)) ?
+      '' : this.answer.setSubScript(Math.abs(this.answer.anion2Charge));
+    this.answer.product1AnionSubscript = (this.answer.cation1Charge === Math.abs(this.answer.anion2Charge)) ?
+      '' : this.answer.setSubScript(this.answer.cation1Charge);
+    this.answer.product1CationSubscript = (this.answer.cation1Charge === Math.abs(this.answer.anion2Charge)) ?
+      '' : this.answer.setSubScript(Math.abs(this.answer.anion2Charge));
+    this.answer.product2AnionSubscript = (this.answer.cation2Charge === Math.abs(this.answer.anion1Charge)) ?
+      '' : this.answer.setSubScript(this.answer.cation2Charge);
+    this.answer.product2CationSubscript = (this.answer.cation2Charge === Math.abs(this.answer.anion1Charge)) ?
+      '' : this.answer.setSubScript(Math.abs(this.answer.anion1Charge));
+    this.answer.calculateFormulaWeight();
+    this.answer.setMolecules();
+    this.answer.displayKey = true;
     this.answer.stoichiometryGeneration();
     this.answer.molecularNotationGeneration();
-    this.answer.calculateFormulaWeight();
-    this.answer.displayKey = true;
   }
 
   // Creates the form and sets default prioperties

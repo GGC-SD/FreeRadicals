@@ -1,12 +1,30 @@
 // Answer key to be used to hold the data inputed by the professors
 // and the answers calculated by the application
 export class AnswerKey {
+  // Inputted data
   anion1: String;
   cation1: String;
   grams1: number;
   anion2: String;
   cation2: String;
   grams2: number;
+
+  reactant1: String;
+  reactant2: String;
+  product1: String;
+  product2: String;
+  reactant1AnionSubscript: String;
+  reactact1CationSubscript: String;
+  reactant2AnionSubscript: String;
+  reactact2CationSubscript: String;
+  product1AnionSubscript: String;
+  product1CationSubscript: String;
+  product2AnionSubscript: String;
+  product2CationSubscript: String;
+  reactant1Coefficient: number;
+  reactant2Coefficient: number;
+  product1Coefficient: number;
+  product2Coefficient: number;
   cation1Weight: number;
   anion1Weight: number;
   cation2Weight: number;
@@ -34,15 +52,32 @@ export class AnswerKey {
     this.displayKey = false;
   }
 
-  // Prints all the properties to the console
-  // Used for debugging
-  public printProperties(): void {
-    console.log(this.anion1);
-    console.log(this.cation1);
-    console.log(this.grams1);
-    console.log(this.anion2);
-    console.log(this.cation2);
-    console.log(this.grams2);
+  // Sets the subscripts of the elements
+  public setSubScript(charge: number): String {
+    switch (charge) {
+      case 1:
+        return '';
+      case 2:
+        return '\u2082';
+      case 3:
+        return '\u2083';
+      default:
+        return '!!!!! ERROR, CHARGE VALUE NOT HANDLED !!!!!';
+    }
+  }
+
+  // Groups the cations, anions, and subscripts to create the molecules as a string
+  public setMolecules(): void {
+    this.reactant1 = '' + this.cation1 + this.reactact1CationSubscript + this.anion1 + this.reactant1AnionSubscript;
+    this.reactant2 = '' + this.cation2 + this.reactact2CationSubscript + this.anion2 + this.reactant2AnionSubscript;
+    this.product1 = '' + this.cation1 + this.product1CationSubscript + this.anion2 + this.product1AnionSubscript;
+    this.product2 = '' + this.cation2 + this.product2CationSubscript + this.anion1 + this.product2AnionSubscript;
+  }
+
+  // Calulates formula weights based on charges of opposite bonded element
+  public calculateFormulaWeight(): void {
+    this.product1Weight = (this.cation1Weight * Math.abs(this.anion2Charge)) + (this.anion2Weight * this.cation1Charge);
+    this.product2Weight = (this.cation2Weight * Math.abs(this.anion1Charge)) + (this.anion1Weight * this.cation2Charge);
   }
 
   // This method is meant to function like his reaction_solubility(a) function
@@ -133,7 +168,7 @@ export class AnswerKey {
     const y = ionCharge[2] * x / ionCharge[0];
 
     // The list of information that is sent off to wherever.
-    const information = [w, x, y, z, ionCharge[0], -ionCharge[1], ionCharge[2], -ionCharge[3]];
+    const information = [w, x, y, z, ionCharge[0], ionCharge[1], ionCharge[2], ionCharge[3]];
 
     // Not sure if you need this returned, but the charge information at least needs to be sent to the stoichiometryGeneration() function
     return information;
@@ -275,11 +310,5 @@ export class AnswerKey {
 			and grams of compound 2 {}".format(sum_of_masses, a[4], a[5]))
 			*/
     }
-  }
-
-  // Calulates formula weights based on charges of opposite bonded element
-  public calculateFormulaWeight() {
-    this.product1Weight = (this.cation1Weight * Math.abs(this.anion2Charge)) + (this.anion2Weight * this.cation1Charge);
-    this.product2Weight = (this.cation2Weight * Math.abs(this.anion1Charge)) + (this.anion1Weight * this.cation2Charge);
   }
 }
