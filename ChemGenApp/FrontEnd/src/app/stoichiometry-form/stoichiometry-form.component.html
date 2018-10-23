@@ -1,6 +1,6 @@
 <form [formGroup]="formGroup">
   <select formControlName="cation1">
-      <option *ngFor="let cation of cations" value="{{ cation.symbol }}">{{ cation.symbol }}</option>
+        <option *ngFor="let cation of cations" value="{{ cation.symbol }}">{{ cation.symbol }}</option>
   </select>
   <select formControlName="anion1">
     <option *ngFor="let anion of anions" value="{{ anion.symbol }}">{{ anion.symbol }}</option>
