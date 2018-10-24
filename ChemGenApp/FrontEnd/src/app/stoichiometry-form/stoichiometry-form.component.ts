@@ -92,7 +92,8 @@ export class StoichiometryFormComponent implements OnInit {
     this.answer.setMolecules();
     this.answer.displayKey = true;
     this.answer.stoichiometryGeneration();
-    this.answer.molecularNotationGeneration();
+    // This method is no longer the right way about it,  Broken most things apart
+    // this.answer.molecularNotationGeneration();
   }
 
   // Creates the form and sets default prioperties

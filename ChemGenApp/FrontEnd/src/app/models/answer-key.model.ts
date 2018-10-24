@@ -2,17 +2,24 @@
 // and the answers calculated by the application
 export class AnswerKey {
   // Inputted data
+  // Reactant 1
   anion1: String;
   cation1: String;
   grams1: number;
+
+  // Reactant 2
   anion2: String;
   cation2: String;
   grams2: number;
 
+  // Calculated Data
+  // Coalesced Molecular data (includes substrings, but not the solubility)
   reactant1: String;
   reactant2: String;
   product1: String;
   product2: String;
+
+  // Pre-coalescing of molecular data.  This has subscripts on the cations and anions, but alone, not put together
   reactant1AnionSubscript: String;
   reactact1CationSubscript: String;
   reactant2AnionSubscript: String;
@@ -21,32 +28,46 @@ export class AnswerKey {
   product1CationSubscript: String;
   product2AnionSubscript: String;
   product2CationSubscript: String;
+
+  // The coefficients of the reactants and products, used in display and some calculations
   reactant1Coefficient: number;
   reactant2Coefficient: number;
   product1Coefficient: number;
   product2Coefficient: number;
+
+  // The atomic mass of each cation and anion, used in some calculations
   cation1Weight: number;
   anion1Weight: number;
   cation2Weight: number;
   anion2Weight: number;
+
+  // Charges of each cation and anion, this is used in generating the molecular data and some calculations
   cation1Charge: number;
   anion1Charge: number;
   cation2Charge: number;
   anion2Charge: number;
+
+  // Final weight of each product.  This is displayed and used in some calculations.
   product1Weight: number;
   product2Weight: number;
+
+  // This determines whether the answer key is displayed or not on the webpage.
   displayKey: boolean;
 
-  /* This section is all the variables I've added to facilitate transfer over to the HTML.  Remove this comment end to comment it out -->*/
-  reactant1Subscript: String;
-  reactant2Subscript: String;
-  product1Subscript: String;
-  product2Subscript: String;
+  // The limiting reactant of the reaction.  This is displayed and determines which numbers in other parts are displayed.
   limitingReactant: String;
+
+  // This is the ratios of moles from each product to each reactant.  This is displayed and used in minor calculations
   moleRatioP1toR1: any;
   moleRatioP1toR2: any;
   moleRatioP2toR1: any;
   moleRatioP2toR2: any;
+
+  // This is the moles of each item.  This is displayed in used in calculations.
+  molesReactant1: String;
+  molesReactant2: String;
+  molesProduct1: String;
+  molesProduct2: String;
 
   constructor() {
     this.displayKey = false;
@@ -80,29 +101,27 @@ export class AnswerKey {
     this.product2Weight = (this.cation2Weight * Math.abs(this.anion1Charge)) + (this.anion1Weight * this.cation2Charge);
   }
 
+  // Rewrite to modularize the methods more.  
+  // Retrieves each ion's charge and saves it
+  public setCharges(): void {
+
+    // Charge data, hard coded.  Please adapt to call data from backend
+    const charge_table = {Li: 1, Na: 1, K: 1, NH4: 1, Mg: 2, Ca: 2, Ba : 2, Zn: 2, 'Fe(II)': 2,
+    Cu: 2, Al: 3, 'Fe(III)': 3, Pb: 2, Ag : 1, Br : -1, I: -1, Cl: -1, NO3 : -1, CO3 : -2, ClO3 : -1,
+    OH : -1, O2: -2, PO4: -3, SO4: -2, Cr2O7: -2};
+
+    // Set the charge variables based on the data provided
+    this.cation1Charge = charge_table[this.cation1 + ''];
+    this.cation2Charge = charge_table[this.cation2 + ''];
+    this.anion1Charge = charge_table[this.anion1 + ''];
+    this.anion2Charge = charge_table[this.anion2 + ''];
+  }
+
   // This method is meant to function like his reaction_solubility(a) function
   // It generates each item's solubility information.
   public solubilityGeneration() {
-    // hardcoded solubility information.  Should be fine for now I guess.  Please replace this with retreiving from the backend asap
-    // var solubilityData = { Li:{ Cl: "aq", Br: "aq", I: "aq", CO3: "aq", ClO3: "aq", OH:
-    // "aq", NO3: "aq", PO4: "aq", SO4: "aq", Cr2O7: "aq"}, Na :{ Cl: "aq", Br: "aq", I : "aq",
-    // CO3: "aq", ClO3: "aq", OH: "aq", NO3:"aq", PO4: "aq", SO4: "aq", Cr2O7: "aq"}, K :{ Cl: "aq",
-    // Br: "aq", I : "aq", CO3: "aq", ClO3: "aq", OH: "aq", NO3:"aq", PO4: "aq", SO4: "aq", Cr2O7: "aq"},
-    // NH4 :{ Cl: "aq", Br: "aq", I : "aq", CO3: "aq", ClO3: "aq", OH: "aq", NO3:"aq", PO4: "aq", SO4: "aq",
-    // Cr2O7: "aq"}, Mg :{ Cl: "aq", Br: "aq", I : "aq", CO3: "s", ClO3: "aq", OH: "s", NO3:"aq", PO4: "s",
-    // SO4: "aq", Cr2O7: "s"}, Ca :{ Cl: "aq", Br: "aq", I : "aq", CO3: "s", ClO3: "aq", OH: "s", NO3:"aq",
-    // PO4: "s", SO4: "aq", Cr2O7: "s"}, Sr :{ Cl: "aq", Br: "aq", I : "aq", CO3: "s", ClO3: "aq", OH: "aq",
-    // NO3:"aq", PO4: "s", SO4: "s", Cr2O7: "s"}, Ba :{ Cl: "aq", Br: "aq", I : "aq", CO3: "s", ClO3: "aq",
-    // OH: "aq", NO3:"aq", PO4: "s", SO4: "s", Cr2O7: "s"}, Zn :{ Cl: "aq", Br: "aq", I : "aq", CO3: "s",
-    // ClO3: "aq", OH: "aq",O2 : "s", NO3:"aq", PO4: "s", SO4: "aq", Cr2O7: "s"}, FeII :{ Cl: "aq", Br: "aq",
-    // I : "aq", CO3: I, ClO3: "aq", OH: "aq",O2 : "s", NO3:"aq", PO4: "s", SO4: "aq", Cr2O7: "s"},
-    // Cu :{ Cl: "aq", Br: "aq", I : "aq", CO3: "s", ClO3: "aq", OH: "aq",O2 : "s", NO3:"aq", PO4: "s",
-    // SO4: "aq", Cr2O7: "s"}, Al :{ Cl: "aq", Br: "aq", I : "aq", CO3: "s", ClO3: "aq", OH: "aq",O2 : "s",
-    // NO3:"aq", PO4: "s", SO4: "aq", Cr2O7: "s"}, FeIII :{ Cl: "aq", Br: "aq", I : "aq", CO3: "s", ClO3: "aq",
-    // OH: "aq",O2 : "s", NO3:"aq", PO4: "s", SO4: "s", Cr2O7: "s"}, Pb : {Cl: "s",  Br: "s", I : "s", CO3: "s",
-    // ClO3: "aq", OH: "s",O2 : "s", NO3:"aq", PO4: "s", SO4: "s", Cr2O7: "s"}, Ag : {Cl: "s",  Br: "s", I : "s",
-    // CO3: "s", ClO3: "aq", OH: "s",O2 : "s", NO3:"aq", PO4: "s", SO4: "s", Cr2O7: "s"}};
-    const solubilityData = {}; // empty object ...  The one above didn't seem to work properly with the letter I?
+    
+    const solubilityData = {}; // Fill this with all of the solubility data, or at least send the solubility data here so that it can be used under the name solubilityData
 
     // storage for sending the data.
     const solubility = [];
@@ -112,63 +131,33 @@ export class AnswerKey {
     solubility.push(solubilityData[this.cation2 + ''][this.anion2 + '']);
     solubility.push(solubilityData[this.cation1 + ''][this.anion2 + '']);
     solubility.push(solubilityData[this.cation2 + ''][this.anion1 + '']);
-
-    // He sends it off to the main() method only, which is where the actuall stoichiometry is printed
+    
+    // Log command, to be removed after testing is done with this method (or commented out)
     console.log('solubilty: ' + solubility);
-    // this.solubility = solubility;
+
+    // Save the solubility data of the molecules.
+    /* add a * / to the end of this line to enable the code (does not work as of this writing)
+    this.reactant1Solubility = solubility[0];
+    this.reactant2Solubility = solubility[1];
+    this.product1Solubility = solubility[2];
+    this.product2Solubility = solubility[3];
+    /**/
   }
 
   // Generates the correct form of notation for writing molecules.  Subscripts and all.
   // Also generates some Mole ratio information used in other methods
-  public molecularNotationGeneration() {
-    // Need the charge table here
-    // Hard coding it for now
-    const charge_table = {Li: 1, Na: 1, K: 1, NH4: 1, Mg: 2, Ca: 2, Ba : 2, Zn: 2, 'Fe(II)': 2,
-    Cu: 2, Al: 3, 'Fe(III)': 3, Pb: 2, Ag : 1, Br : -1, I: -1, Cl: -1, NO3 : -1, CO3 : -2, ClO3 : -1,
-    OH : -1, O2: -2, PO4: -3, SO4: -2, Cr2O7: -2};
+  public zwxyGeneration() {    
 
-    // This should avoid the need for looping through the table, as long as retrieving the object data is possible
-    const ionCharge = [];
-    ionCharge.push(charge_table[this.cation1 + '']);
-    ionCharge.push(charge_table[this.anion1 + '']);
-    ionCharge.push(charge_table[this.cation2 + '']);
-    ionCharge.push(charge_table[this.anion2 + '']);
-
-    /** NOTE: */
-    // To simplify and shrink this part of the code, I am assuming there will be no zero charge ions,
-    // and that the largest absolute value of a charge will be 3.
-    // Please notify me if something about this goes wrong, or is wrong, and I will change it.
-    const chargeTemp = []; // Temporary storage of the unicode subscript for the compound
-    let temp = 0; // used to reduce the Math.abs() calls each loop
-    for (let i = 0; i < ionCharge.length; i++) {
-      temp = Math.abs(ionCharge[i]); // Gets the absolute value of the charge so that I can properly select the subscript
-      if (temp === 1) {
-        chargeTemp[i] = ''; // empty string for 1, since it doesn't get a subscript
-      } else if (temp === 2) {
-        chargeTemp[i] = '\u2082'; // \u2082 is subscript 2
-      } else if (temp === 3) {
-        chargeTemp[i] = '\u2083'; // \u2083 is subscript 3
-      } else {
-        chargeTemp[i] = '!!!!! ERROR, CHARGE VALUE NOT HANDLED !!!!!';
-      }
-    }
-
-    // Combine the strings into the reactants and products
-    this.reactant1Subscript = (this.cation1 + chargeTemp[1] + this.anion1 + chargeTemp[0]);
-    this.reactant2Subscript = (this.cation2 + chargeTemp[3] + this.anion2 + chargeTemp[2]);
-    this.product1Subscript = (this.cation1 + chargeTemp[3] + this.anion2 + chargeTemp[0]);
-    this.product2Subscript = (this.cation2 + chargeTemp[1] + this.anion1 + chargeTemp[2]);
-
-    // At this point, I have the strings that properly represent the products and reactants, including the subscripts
-
-    // Not sure what this stuff is supposed to mean, so I can't come up with better names
+    // Not sure what this stuff is supposed to mean, so I can't come up with better names  Looking into it
     const z = 1.0;
-    const w = z * (ionCharge[2] / ionCharge[0]);
-    const x = -ionCharge[2] / -ionCharge[3];
-    const y = ionCharge[2] * x / ionCharge[0];
+    const w = z * (this.cation2Charge / this.cation1Charge);
+    const x = -this.anion1Charge / -this.anion2Charge;
+    const y = (this.cation2Charge * x) / this.cation1Charge;
 
     // The list of information that is sent off to wherever.
-    const information = [w, x, y, z, ionCharge[0], ionCharge[1], ionCharge[2], ionCharge[3]];
+    const information = [w, x, y, z];
+
+    console.log(information);
 
     // Not sure if you need this returned, but the charge information at least needs to be sent to the stoichiometryGeneration() function
     return information;
@@ -177,8 +166,10 @@ export class AnswerKey {
   // Time to make the hard one
   public stoichiometryGeneration() {
 
-    // Not sure what this is used for yet
-    const f = this.molecularNotationGeneration();
+    // Not sure what F is used for yet
+    const f = this.zwxyGeneration();
+    
+    console.log(f);
 
     // Hardcoded atomic masses using javascript objects  Please replace with appropriate backend call ASAP
     const txt = '{ "H" : 1.008, "He": 4.002, "Li" : 6.94, "Be" : 9.012, "B" : 10.81, "C" : 12.011, "N" : 14.007,' +
@@ -224,15 +215,15 @@ export class AnswerKey {
 
 		seems to say want the following printed out.  Replace the <info> with what the stuff inside the <>'s describe
 
-		"mole ratio of product <this.product1Subscript> to reactant <this.reactant1Subscript> is: <moleRatioP1toR1>"
-		"mole ratio of product <this.product1Subscript> to reactant <this.reactant2Subscript> is: <moleRatioP1toR2>"
-		"mole ratio of product <this.product2Subscript> to reactant <this.reactant1Subscript> is: <moleRatioP2toR1>"
-		"mole ratio of product <this.product2Subscript> to reactant <this.reactant2Subscript> is: <moleRatioP2toR2>"
+		"mole ratio of product <this.product1> to reactant <this.reactant1> is: <moleRatioP1toR1>"
+		"mole ratio of product <this.product1> to reactant <this.reactant2> is: <moleRatioP1toR2>"
+		"mole ratio of product <this.product2> to reactant <this.reactant1> is: <moleRatioP2toR1>"
+		"mole ratio of product <this.product2> to reactant <this.reactant2> is: <moleRatioP2toR2>"
 		*/
 
     // FORMULA WEIGHT
-    const product1FormulaWeight = (listOfWeights[0] * (f[7]) + listOfWeights[3] * (f[4]));
-    const product2FormulaWeight = (listOfWeights[2] * (f[5]) + listOfWeights[1] * (f[6]));
+    const product1FormulaWeight = (listOfWeights[0] * this.anion2Charge + listOfWeights[3] * this.cation1Charge);
+    const product2FormulaWeight = (listOfWeights[2] * this.anion1Charge + listOfWeights[1] * this.cation2Charge);
 
     /* He had this code.  I have everything prepared by this point.  Shouldn't be too hard to understand.
 		print("The formula weight for product 1 is:", product1FormulaWeight)
@@ -241,8 +232,8 @@ export class AnswerKey {
 		*/
 
     // PREPARE FOR LIMITING REACTANT
-    const mol_compound_1 = this.grams1 / (listOfWeights[0] * (f[5]) + listOfWeights[1] * (f[4]));
-    const mol_compound_2 = this.grams2 / (listOfWeights[3] * (f[6]) + listOfWeights[2] * (f[7]));
+    const mol_compound_1 = this.grams1 / (listOfWeights[0] * this.anion1Charge + listOfWeights[1] * this.cation1Charge);
+    const mol_compound_2 = this.grams2 / (listOfWeights[3] * this.cation2Charge + listOfWeights[2] * this.anion2Charge);
 
     const P1_mols_R1 = mol_compound_1 * this.moleRatioP1toR1;
     const P2_mols_R1 = mol_compound_1 * this.moleRatioP2toR1;
@@ -266,14 +257,14 @@ export class AnswerKey {
       const Yield_P1 = P1_mols_R1 * product1FormulaWeight;
       const Yield_P2 = P2_mols_R1 * product2FormulaWeight;
 
-      const FW_comp2 = (listOfWeights[3] * (f[6]) + listOfWeights[2] * (f[7]));
+      const FW_comp2 = (listOfWeights[3] * this.cation2Charge + listOfWeights[2] * this.anion2Charge);
       const grams_used = ((f[1] / f[0]) * mol_compound_1) * FW_comp2;
 
       const excess_grams = this.grams2 - grams_used;
 
       const sum_of_masses = (excess_grams + Yield_P1 + Yield_P2);
 
-      this.limitingReactant = this.reactant1Subscript;
+      this.limitingReactant = this.reactant1;
       /* He had this code.  I should have everything prepared for outputting this, but if there are any issues, please tell me.
 			print ( "The limiting reactant is: ", f[1])
 			print("The limiting reactant {} yields  {} grams of {}  and  {} grams of {}".format(f[1], Yield_P1, f[5], Yield_P2, f[7]))
@@ -290,14 +281,14 @@ export class AnswerKey {
       const molR1_to_R2 = f[0] / f[1];
       const molR1 = molR1_to_R2 * mol_compound_2;
 
-      const FW_comp1 = (listOfWeights[0] * (f[5]) + listOfWeights[1] * (f[4]));
+      const FW_comp1 = (listOfWeights[0] * this.anion1Charge + listOfWeights[1] * this.cation1Charge);
 
       const grams_used = molR1 * FW_comp1;
       const excess_grams = this.grams1 - grams_used;
 
       const sum_of_masses = (excess_grams + Yield_P1 + Yield_P2);
 
-      this.limitingReactant = this.reactant2Subscript;
+      this.limitingReactant = this.reactant2;
       /* He had this code.
 			print ( "The limiting reactant is: ", f[3])
 			print("The limiting reactant {} yields  {} grams of {}  and  {} grams of {}".format(f[3], Yield_P1, f[5], Yield_P2, f[7]))
