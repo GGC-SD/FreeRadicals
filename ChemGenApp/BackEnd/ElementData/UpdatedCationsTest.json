@@ -1,0 +1,86 @@
+[
+  {
+    "symbol": "Li",
+    "name": "Lithium",
+    "mass": 1.0003,
+    "charge": 1
+  },
+  {
+    "symbol": "Na",
+    "name": "Sodium",
+    "mass": 22.99,
+    "charge": 1
+  },
+  {
+    "symbol": "K",
+    "name": "Potassium",
+    "mass": 39.098,
+    "charge": 1
+  },
+  {
+    "symbol": "NH4",
+    "name": "Ammonium",
+    "mass": 18,
+    "charge": 1
+  },
+  {
+    "symbol": "Mg",
+    "name": "Magnesium",
+    "mass": 24.035,
+    "charge": 2
+  },
+  {
+    "symbol": "Ca",
+    "name": "Calcium",
+    "mass": 40.078,
+    "charge": 2
+  },
+  {
+    "symbol": "Ba",
+    "name": "Barium",
+    "mass": 137.33,
+    "charge": 2
+  },
+  {
+    "symbol": "Zn",
+    "name": "Zinc",
+    "mass": 65.38,
+    "charge": 2
+  },
+  {
+    "symbol": "Fe(II)",
+    "name": "Ferrous ion",
+    "mass": 55.845,
+    "charge": 2
+  },
+  {
+    "symbol": "Cu",
+    "name": "Copper",
+    "mass": 63.546,
+    "charge": 2
+  },
+  {
+    "symbol": "Al",
+    "name": "Aluminum",
+    "mass": 26.982,
+    "charge": 3
+  },
+  {
+    "symbol": "Fe(III)",
+    "name": "Ferric ion",
+    "mass": 55.845,
+    "charge": 3
+  },
+  {
+    "symbol": "Pb",
+    "name": "Lead",
+    "mass": 207.2,
+    "charge": 2
+  },
+  {
+    "symbol": "Ag",
+    "name": "Silver",
+    "mass": 107.87,
+    "charge": 1
+  }
+]

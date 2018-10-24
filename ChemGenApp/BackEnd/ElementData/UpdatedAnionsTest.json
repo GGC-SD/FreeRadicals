@@ -1,0 +1,68 @@
+[
+  {
+    "symbol": "Br",
+    "name": "Bromine",
+    "mass": 79.904,
+    "charge": -1
+  },
+  {
+    "symbol": "I",
+    "name": "Iodine",
+    "mass": 126.9,
+    "charge": -1
+  },
+  {
+    "symbol": "Cl",
+    "name": "Chlorine",
+    "mass": 35.45,
+    "charge": -1
+  },
+  {
+    "symbol": "NO3",
+    "name": "Nitrate",
+    "mass": 62,
+    "charge": -1
+  },
+  {
+    "symbol": "CO3",
+    "name": "Carbonate",
+    "mass": 60.01,
+    "charge": -2
+  },
+  {
+    "symbol": "ClO3",
+    "name": "Chlorate",
+    "mass": 83.447,
+    "charge": -1
+  },
+  {
+    "symbol": "OH",
+    "name": "Hydroxide",
+    "mass": 17.01,
+    "charge": -1
+  },
+  {
+    "symbol": "O2",
+    "name": "Peroxide",
+    "mass": 32,
+    "charge": -2
+  },
+  {
+    "symbol": "PO4",
+    "name": "Phosphate",
+    "mass": 94.9714,
+    "charge": -3
+  },
+  {
+    "symbol": "SO4",
+    "name": "Sulfate",
+    "mass": 96.06,
+    "charge": -2
+  },
+  {
+    "symbol": "Cr2O7",
+    "name": "Dichromate",
+    "mass": 215.985,
+    "charge": -2
+  }
+]
