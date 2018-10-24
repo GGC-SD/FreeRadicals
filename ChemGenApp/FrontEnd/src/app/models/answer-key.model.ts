@@ -139,9 +139,10 @@ export class AnswerKey {
             reactact1CationAmount = this.reactact1CationSubscript * this.reactant1Coefficient;
             reactant1AnionAmount = this.reactant1AnionSubscript * this.reactant1Coefficient;
           }
+        }
 
       // Tests if cation amounts are the same
-      } else if (reactant2CationAmount !== product2CationAmount) {
+      if (reactant2CationAmount !== product2CationAmount) {
 
         // If not the same test which is bigger and increase the appropriate coefficient
         if (reactant2CationAmount > product2CationAmount) {
@@ -153,9 +154,10 @@ export class AnswerKey {
           reactant2CationAmount = this.reactact2CationSubscript * this.reactant2Coefficient;
           reactant2AnionAmount = this.reactant2AnionSubscript * this.reactant2Coefficient;
         }
+      }
 
         // Tests if anion amounts are the same
-        } else if (reactant1AnionAmount !== product2AnionAmount) {
+        if (reactant1AnionAmount !== product2AnionAmount) {
 
           // If not the same test which is bigger and increase the appropriate coefficient
           if (reactant1AnionAmount > product2AnionAmount) {
@@ -167,9 +169,10 @@ export class AnswerKey {
             reactact1CationAmount = this.reactact1CationSubscript * this.reactant1Coefficient;
             reactant1AnionAmount = this.reactant1AnionSubscript * this.reactant1Coefficient;
           }
+        }
 
-          // Tests if anion amounts are the same
-        } else if (reactant2AnionAmount !== product1AnionAmount) {
+        // Tests if anion amounts are the same
+        if (reactant2AnionAmount !== product1AnionAmount) {
 
           // If not the same test which is bigger and increase the appropriate coefficient
           if (reactant2AnionAmount > product1AnionAmount) {
