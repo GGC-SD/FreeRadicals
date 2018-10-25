@@ -2,13 +2,13 @@
   {
     "symbol": "Li",
     "name": "Lithium",
-    "atomic mass": 1.0003,
+    "atomic mass": 6.9412,
     "charge": 1
   },
   {
     "symbol": "Na",
     "name": "Sodium",
-    "atomic mass": 22.99,
+    "atomic mass": 22.990,
     "charge": 1
   },
   {
@@ -20,13 +20,13 @@
   {
     "symbol": "NH4",
     "name": "Ammonium",
-    "atomic mass": 18,
+    "atomic mass": 18.038,
     "charge": 1
   },
   {
     "symbol": "Mg",
     "name": "Magnesium",
-    "atomic mass": 24.035,
+    "atomic mass": 24.305,
     "charge": 2
   },
   {
@@ -38,17 +38,17 @@
   {
     "symbol": "Ba",
     "name": "Barium",
-    "atomic mass": 137.33,
+    "atomic mass": 137.328,
     "charge": 2
   },
   {
     "symbol": "Zn",
     "name": "Zinc",
-    "atomic mass": 65.38,
+    "atomic mass": 65.382,
     "charge": 2
   },
   {
-    "symbol": "Fe2",
+    "symbol": "Fe(II)",
     "name": "Ferrous ion",
     "atomic mass": 55.845,
     "charge": 2
@@ -66,7 +66,7 @@
     "charge": 3
   },
   {
-    "symbol": "Fe3",
+    "symbol": "Fe(III)",
     "name": "Ferric ion",
     "atomic mass": 55.845,
     "charge": 3
@@ -74,13 +74,13 @@
   {
     "symbol": "Pb",
     "name": "Lead",
-    "atomic mass": 207.2,
+    "atomic mass": 207.21,
     "charge": 2
   },
   {
     "symbol": "Ag",
     "name": "Silver",
-    "atomic mass": 107.87,
+    "atomic mass": 107.868,
     "charge": 1
   }
 ]
