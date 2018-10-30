@@ -188,6 +188,7 @@ export class AnswerKey {
     }
   }
 
+  // Calculates mole ratios based on coefficients
   public calculateMoleRatios() {
     this.moleRatioP1toR1 = this.product1Coefficient / this.reactant1Coefficient;
     this.moleRatioP1toR2 = this.product1Coefficient / this.reactant2Coefficient;
