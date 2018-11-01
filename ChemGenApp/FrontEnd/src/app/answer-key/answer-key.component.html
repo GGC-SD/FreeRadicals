@@ -1,15 +1,35 @@
 <div class="header">Answer Key</div>
-<ng-container>
+<ng-container *ngIf="answer.displayKey">
   <br>
-  <table>
-    <th>1. NaBr + MgOH => MgBr + NaOH</th>
-    <tr>
-      <td>Answer 1</td>
-      <td>Answer 2</td>
-    </tr>
-    <tr>
-      <td>Answer 3</td>
-      <td>Answer 4</td>
-    </tr>
-  </table>
+  <ng-container *ngIf="answer.reactant1Coefficient > 1">{{ answer.reactant1Coefficient }}</ng-container>{{ answer.reactant1 }}(aq) + <ng-container *ngIf="answer.reactant2Coefficient > 1">{{ answer.reactant2Coefficient }}</ng-container>{{ answer.reactant2 }}(aq) => <ng-container *ngIf="answer.product1Coefficient > 1">{{ answer.product1Coefficient }}</ng-container>{{ answer.product1 }}(aq) + <ng-container *ngIf="answer.product2Coefficient > 1">{{ answer.product2Coefficient }}</ng-container>{{ answer.product2 }}(aq)
+  <br><br>
+  mole ratio of {{ answer.product1 }} to {{ answer.reactant1 }} is: {{ answer.moleRatioP1toR1 }}
+  <br>
+  mole ratio of {{ answer.product1 }} to {{ answer.reactant2 }} is: {{ answer.moleRatioP1toR2 }}
+  <br>
+  mole ratio of {{ answer.product2 }} to {{ answer.reactant1 }} is: {{ answer.moleRatioP2toR1 }}
+  <br>
+  mole ratio of {{ answer.product2 }} to {{ answer.reactant2 }} is: {{ answer.moleRatioP2toR2 }}
+  <br><br>
+  The formula weight for {{ answer.product1 }} is: {{ answer.product1Weight }}
+  <br>
+  The formula weight for {{ answer.product2 }} is: {{ answer.product2Weight }}
+  <br><br>
+  0.236 moles of {{ answer.reactant1 }} yields 0.236 moles of {{ answer.product2 }}
+  <br>
+  0.236 moles of {{ answer.reactant1 }} yields 0.236 moles of {{ answer.product1 }}
+  <br>
+  0.097 moles of {{ answer.reactant2 }} yields 0.097 moles of {{ answer.product2 }}
+  <br>
+  0.097 moles of {{ answer.reactant2 }} yields 0.097 moles of {{ answer.product1 }}
+  <br><br>
+  The limiting reactant is: {{ answer.limitingReactant }}
+  <br>
+  {{ answer.reactant2 }} yields 8.440 grams of {{ answer.product1 }} and 5.680 grams of {{ answer.product2 }}
+  <br>
+  The grams used up is: 4.120
+  <br>
+  The amount of {{ answer.reactant1 }} is 5.880 grams
+  <br>
+  the sum of excess plus used reagents 20.0 ought to equal the grams of compound 1 {{ answer.grams1 }} and grams of compound 2 {{ answer.grams2 }}
 </ng-container>

@@ -2,85 +2,85 @@
   {
     "symbol": "Li",
     "name": "Lithium",
-    "atomic mass": 6.9412,
+    "mass": 6.9412,
     "charge": 1
   },
   {
     "symbol": "Na",
     "name": "Sodium",
-    "atomic mass": 22.990,
+    "mass": 22.99,
     "charge": 1
   },
   {
     "symbol": "K",
     "name": "Potassium",
-    "atomic mass": 39.098,
+    "mass": 39.098,
     "charge": 1
   },
   {
     "symbol": "NH4",
     "name": "Ammonium",
-    "atomic mass": 18.038,
+    "mass": 18.038,
     "charge": 1
   },
   {
     "symbol": "Mg",
     "name": "Magnesium",
-    "atomic mass": 24.305,
+    "mass": 24.305,
     "charge": 2
   },
   {
     "symbol": "Ca",
     "name": "Calcium",
-    "atomic mass": 40.078,
+    "mass": 40.078,
     "charge": 2
   },
   {
     "symbol": "Ba",
     "name": "Barium",
-    "atomic mass": 137.328,
+    "mass": 137.328,
     "charge": 2
   },
   {
     "symbol": "Zn",
     "name": "Zinc",
-    "atomic mass": 65.382,
+    "mass": 65.382,
     "charge": 2
   },
   {
     "symbol": "Fe(II)",
     "name": "Ferrous ion",
-    "atomic mass": 55.845,
+    "mass": 55.845,
     "charge": 2
   },
   {
     "symbol": "Cu",
     "name": "Copper",
-    "atomic mass": 63.546,
+    "mass": 63.546,
     "charge": 2
   },
   {
     "symbol": "Al",
     "name": "Aluminum",
-    "atomic mass": 26.982,
+    "mass": 26.982,
     "charge": 3
   },
   {
     "symbol": "Fe(III)",
     "name": "Ferric ion",
-    "atomic mass": 55.845,
+    "mass": 55.845,
     "charge": 3
   },
   {
     "symbol": "Pb",
     "name": "Lead",
-    "atomic mass": 207.21,
+    "mass": 207.21,
     "charge": 2
   },
   {
     "symbol": "Ag",
     "name": "Silver",
-    "atomic mass": 107.868,
+    "mass": 107.868,
     "charge": 1
   }
 ]

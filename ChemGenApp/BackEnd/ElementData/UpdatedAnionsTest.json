@@ -2,67 +2,67 @@
   {
     "symbol": "Br",
     "name": "Bromine",
-    "atomic mass": 79.904,
+    "mass": 79.904,
     "charge": -1
   },
   {
     "symbol": "I",
     "name": "Iodine",
-    "atomic mass": 126.904,
+    "mass": 126.904,
     "charge": -1
   },
   {
     "symbol": "Cl",
     "name": "Chlorine",
-    "atomic mass": 35.453,
+    "mass": 35.453,
     "charge": -1
   },
   {
     "symbol": "NO3",
     "name": "Nitrate",
-    "atomic mass": 61.990,
+    "mass": 61.990,
     "charge": -1
   },
   {
     "symbol": "CO3",
     "name": "Carbonate",
-    "atomic mass": 60.009,
+    "mass": 60.009,
     "charge": -2
   },
   {
-    "symbol": "CLO3",
+    "symbol": "ClO3",
     "name": "Chlorate",
-    "atomic mass": 83.451,
+    "mass": 83.451,
     "charge": -1
   },
   {
     "symbol": "OH",
     "name": "Hydroxide",
-    "atomic mass": 17.007,
+    "mass": 17.007,
     "charge": -1
   },
   {
     "symbol": "O2",
     "name": "Peroxide",
-    "atomic mass": 31.999,
+    "mass": 31.999,
     "charge": -2
   },
   {
     "symbol": "PO4",
     "name": "Phosphate",
-    "atomic mass": 94.971,
+    "mass": 94.971,
     "charge": -3
   },
   {
     "symbol": "SO4",
     "name": "Sulfate",
-    "atomic mass": 96.063,
+    "mass": 96.063,
     "charge": -2
   },
   {
-    "symbol": "(Cr2O7)",
+    "symbol": "Cr2O7",
     "name": "Dichromate",
-    "atomic mass": 215.988,
+    "mass": 215.988,
     "charge": -2
   }
 ]
