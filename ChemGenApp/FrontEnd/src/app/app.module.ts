@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { StoichiometryFormComponent } from './stoichiometry-form/stoichiometry-form.component';
 import { AnswerKeyComponent } from './answer-key/answer-key.component';
 import { ElementsService } from './services/elements.service';
+import {MatToolbarModule} from '@angular/material';
 
 const routes: Routes = [
   // { path: '', redirectTo: 'answer', pathMatch: 'full' },
