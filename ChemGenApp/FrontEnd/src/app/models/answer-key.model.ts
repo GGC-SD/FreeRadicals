@@ -1,43 +1,64 @@
 // Answer key to be used to hold the data inputed by the professors
 // and the answers calculated by the application
 export class AnswerKey {
+  
+  // Whether or not the output is displayed
+  public displayKey: boolean;
+
   // Inputted data
+  // Reactant 1
   public anion1: String;
   public cation1: String;
   public grams1: number;
+
+  // Reactant 2
   public anion2: String;
   public cation2: String;
   public grams2: number;
+
+  // Calculated Data
   public cation1Weight: number;
   public anion1Weight: number;
   public cation2Weight: number;
   public anion2Weight: number;
+
+  // Charges of Ions
   public cation1Charge: number;
   public anion1Charge: number;
   public cation2Charge: number;
   public anion2Charge: number;
-  public displayKey: boolean;
 
-  // Calculated Data
   // Coalesced Molecular data (includes substrings, but not the solubility)
   reactant1: String;
   reactant2: String;
   product1: String;
   product2: String;
+
+  // Reactant Subscripts
   reactant1AnionSubscript: number;
   reactact1CationSubscript: number;
   reactant2AnionSubscript: number;
   reactact2CationSubscript: number;
+  
+  // Product Subscripts
   product1AnionSubscript: number;
   product1CationSubscript: number;
   product2AnionSubscript: number;
   product2CationSubscript: number;
+  
+  // Reactant Coefficients
   reactant1Coefficient: number;
   reactant2Coefficient: number;
+
+  // Product Coefficients
   product1Coefficient: number;
   product2Coefficient: number;
+
+  // Product Weights (Molar Mass)
   product1Weight: number;
   product2Weight: number;
+
+  // Mole Ratios of Products to Reactants
   moleRatioP1toR1: number;
   moleRatioP1toR2: number;
   moleRatioP2toR1: number;
@@ -46,14 +67,22 @@ export class AnswerKey {
   // The limiting reactant of the reaction.  This is displayed and determines which numbers in other parts are displayed.
   limitingReactant: String;
 
-  // This is the moles of each item.  This is displayed in used in calculations.
+  // This is the moles of each item.  This is displayed and used in calculations.
+  // Reactants
   molesReactant1: String;
   molesReactant2: String;
+  
+  // Products
   molesProduct1: String;
   molesProduct2: String;
 
+  // Runs at the beginning (obviously)
   constructor() {
+
+    // Make sure the display is off by default
     this.displayKey = false;
+
+    // Default the Coefficients to 1
     this.reactant1Coefficient = 1;
     this.reactant2Coefficient = 1;
     this.product1Coefficient = 1;
@@ -63,60 +92,76 @@ export class AnswerKey {
   // Sets the subscripts of the elements
   public setSubScript(subscript: number): String {
     switch (subscript) {
-      case 1:
-        return '';
-      case 2:
-        return '\u2082';
-      case 3:
-        return '\u2083';
-      default:
-        return '!!!!! ERROR: SUBSCRIPT VALUE NOT HANDLED !!!!!';
+      case 1: // if the subscript is 1
+        return ''; // send back a blank field
+      case 2: // if the subscript is 2
+        return '\u2082'; // send back the unicode for subscript 2
+      case 3: // if the subscript is 3
+        return '\u2083'; // send back the unicode for subscript 3
+      default: // otherwise
+        return '!!!!! ERROR: SUBSCRIPT VALUE NOT HANDLED !!!!!'; // send back an error so that we can add more cases (potentially)
     }
   }
 
   // Groups the cations, anions, and subscripts to create the molecules as a string
   public setMolecules(): void {
+
     this.reactant1 = '' + this.cation1 + this.setSubScript(this.reactact1CationSubscript) + this.anion1 +
       this.setSubScript(this.reactant1AnionSubscript);
+    
     this.reactant2 = '' + this.cation2 + this.setSubScript(this.reactact2CationSubscript) + this.anion2 +
       this.setSubScript(this.reactant2AnionSubscript);
+    
     this.product1 = '' + this.cation1 + this.setSubScript(this.product1CationSubscript) + this.anion2 +
       this.setSubScript(this.product1AnionSubscript);
+
     this.product2 = '' + this.cation2 + this.setSubScript(this.product2CationSubscript) + this.anion1 +
       this.setSubScript(this.product2AnionSubscript);
   }
 
   // Calulates formula weights based on charges of opposite bonded element
   public calculateFormulaWeight(): void {
+    
     this.product1Weight = (this.cation1Weight * this.product1CationSubscript) +
       (this.anion2Weight * this.product1AnionSubscript);
+
     this.product2Weight = (this.cation2Weight * this.product2CationSubscript) +
       (this.anion1Weight * this.product2AnionSubscript);
   }
 
   // Determnes the subscript based on opposing charges
   public determineSubscript(): void {
+    
     this.reactant1AnionSubscript = (this.cation1Charge === Math.abs(this.anion1Charge)) ?
       1 : this.cation1Charge;
+
     this.reactact1CationSubscript = (this.cation1Charge === Math.abs(this.anion1Charge)) ?
       1 : Math.abs(this.anion1Charge);
+
     this.reactant2AnionSubscript = (this.cation2Charge === Math.abs(this.anion2Charge)) ?
       1 : this.cation2Charge;
+
     this.reactact2CationSubscript = (this.cation2Charge === Math.abs(this.anion2Charge)) ?
       1 : Math.abs(this.anion2Charge);
+
     this.product1AnionSubscript = (this.cation1Charge === Math.abs(this.anion2Charge)) ?
       1 : this.cation1Charge;
+
     this.product1CationSubscript = (this.cation1Charge === Math.abs(this.anion2Charge)) ?
       1 : Math.abs(this.anion2Charge);
+
     this.product2AnionSubscript = (this.cation2Charge === Math.abs(this.anion1Charge)) ?
       1 : this.cation2Charge;
+
     this.product2CationSubscript = (this.cation2Charge === Math.abs(this.anion1Charge)) ?
       1 : Math.abs(this.anion1Charge);
   }
 
   // Balances equation based on subscripts and default coefficients
   public balanceEquation(): void {
+    
     // Determines the amount of cations and anions in each molecule based on subscript and coefficient
+    // This keeps track of how many there are in each molecule, and checks that they all are the same.
     let reactact1CationAmount: number = this.reactact1CationSubscript * this.reactant1Coefficient;
     let product1CationAmount: number = this.product1CationSubscript * this.product1Coefficient;
     let reactant1AnionAmount: number = this.reactant1AnionSubscript * this.reactant1Coefficient;
@@ -126,27 +171,29 @@ export class AnswerKey {
     let reactant2AnionAmount: number = this.reactant2AnionSubscript * this.reactant2Coefficient;
     let product2AnionAmount: number = this.product2AnionSubscript * this.product2Coefficient;
 
-    // While loops tests that the amounts on either sde of the equation are equal
-    while (reactact1CationAmount !== product1CationAmount || reactant1AnionAmount !== product2AnionAmount ||
-      reactant2CationAmount !== product2CationAmount || reactant2AnionAmount !== product1AnionAmount) {
-
-        // Tests if cation amounts are the same
-        if (reactact1CationAmount !== product1CationAmount) {
-
-          // If not the same test which is bigger and increase the appropriate coefficient
-          if (reactact1CationAmount > product1CationAmount) {
-            this.product1Coefficient *= reactact1CationAmount / product1CationAmount;
-            product1CationAmount = this.product1CationSubscript * this.product1Coefficient;
-            product1AnionAmount = this.product1AnionSubscript * this.product1Coefficient;
-          } else {
-            this.reactant1Coefficient *= product1CationAmount / reactact1CationAmount;
-            reactact1CationAmount = this.reactact1CationSubscript * this.reactant1Coefficient;
-            reactant1AnionAmount = this.reactant1AnionSubscript * this.reactant1Coefficient;
-          }
+    // While loops tests that the amounts on either side of the equation are equal
+    while (
+      reactact1CationAmount !== product1CationAmount ||
+      reactant1AnionAmount !== product2AnionAmount ||
+      reactant2CationAmount !== product2CationAmount || 
+      reactant2AnionAmount !== product1AnionAmount
+    ) {
 
       // Tests if cation amounts are the same
-      } else if (reactant2CationAmount !== product2CationAmount) {
+      if (reactact1CationAmount !== product1CationAmount) {
 
+        // If not the same test which is bigger and increase the appropriate coefficient
+        if (reactact1CationAmount > product1CationAmount) {
+          this.product1Coefficient *= reactact1CationAmount / product1CationAmount;
+          product1CationAmount = this.product1CationSubscript * this.product1Coefficient;
+          product1AnionAmount = this.product1AnionSubscript * this.product1Coefficient;
+        } else {
+          this.reactant1Coefficient *= product1CationAmount / reactact1CationAmount;
+          reactact1CationAmount = this.reactact1CationSubscript * this.reactant1Coefficient;
+          reactant1AnionAmount = this.reactant1AnionSubscript * this.reactant1Coefficient;
+        }
+      // Tests if cation amounts are the same
+      } else if (reactant2CationAmount !== product2CationAmount) {
         // If not the same test which is bigger and increase the appropriate coefficient
         if (reactant2CationAmount > product2CationAmount) {
           this.product2Coefficient *= reactant2CationAmount / product2CationAmount;
@@ -157,35 +204,90 @@ export class AnswerKey {
           reactant2CationAmount = this.reactact2CationSubscript * this.reactant2Coefficient;
           reactant2AnionAmount = this.reactant2AnionSubscript * this.reactant2Coefficient;
         }
-
-        // Tests if anion amounts are the same
-        } else if (reactant1AnionAmount !== product2AnionAmount) {
-
-          // If not the same test which is bigger and increase the appropriate coefficient
-          if (reactant1AnionAmount > product2AnionAmount) {
-            this.product2Coefficient *= reactant1AnionAmount / product2AnionAmount;
-            product2CationAmount = this.product2CationSubscript * this.product2Coefficient;
-            product2AnionAmount = this.product2AnionSubscript * this.product2Coefficient;
-          } else {
-            this.reactant1Coefficient *= product1CationAmount / reactact1CationAmount;
-            reactact1CationAmount = this.reactact1CationSubscript * this.reactant1Coefficient;
-            reactant1AnionAmount = this.reactant1AnionSubscript * this.reactant1Coefficient;
-          }
-
-          // Tests if anion amounts are the same
-        } else if (reactant2AnionAmount !== product1AnionAmount) {
-
-          // If not the same test which is bigger and increase the appropriate coefficient
-          if (reactant2AnionAmount > product1AnionAmount) {
-            this.product1Coefficient *= reactant2AnionAmount / product1AnionAmount;
-            product1CationAmount = this.product1CationSubscript * this.product1Coefficient;
-            product1AnionAmount = this.product1AnionSubscript * this.product1Coefficient;
-          } else {
-            this.reactant2Coefficient *= product1AnionAmount / reactant2AnionAmount;
-            reactant2CationAmount = this.reactact2CationSubscript * this.reactant2Coefficient;
-            reactant2AnionAmount = this.reactant2AnionSubscript * this.reactant2Coefficient;
-          }
+      // Tests if anion amounts are the same
+      } else if (reactant1AnionAmount !== product2AnionAmount) {
+        // If not the same test which is bigger and increase the appropriate coefficient
+        if (reactant1AnionAmount > product2AnionAmount) {
+          this.product2Coefficient *= reactant1AnionAmount / product2AnionAmount;
+          product2CationAmount = this.product2CationSubscript * this.product2Coefficient;
+          product2AnionAmount = this.product2AnionSubscript * this.product2Coefficient;
+        } else {
+          this.reactant1Coefficient *= product1CationAmount / reactact1CationAmount;
+          reactact1CationAmount = this.reactact1CationSubscript * this.reactant1Coefficient;
+          reactant1AnionAmount = this.reactant1AnionSubscript * this.reactant1Coefficient;
         }
+      // Tests if anion amounts are the same
+      } else if (reactant2AnionAmount !== product1AnionAmount) {
+        // If not the same test which is bigger and increase the appropriate coefficient
+        if (reactant2AnionAmount > product1AnionAmount) {
+          this.product1Coefficient *= reactant2AnionAmount / product1AnionAmount;
+          product1CationAmount = this.product1CationSubscript * this.product1Coefficient;
+          product1AnionAmount = this.product1AnionSubscript * this.product1Coefficient;
+        } else {
+          this.reactant2Coefficient *= product1AnionAmount / reactant2AnionAmount;
+          reactant2CationAmount = this.reactact2CationSubscript * this.reactant2Coefficient;
+          reactant2AnionAmount = this.reactant2AnionSubscript * this.reactant2Coefficient;
+        }
+      } 
+    }
+    // As there may be decimal coefficients, this needs to be corrected right after balancing.
+    this.fixDecimalCoefficients();
+  }
+
+  // This method runs after the balanceEquation() method
+  // It corrects the possibility of decimal coefficients
+  private fixDecimalCoefficients(): void {
+
+    // This number will store the decimal to be divided by
+    let coefficientDecimal: number;
+
+    // Runs for as long as there is a coefficient that isn't an integer (should only be once though)
+    while (
+      (this.reactant1Coefficient % 1) !== 0 ||
+      (this.reactant2Coefficient % 1) !== 0 ||
+      (this.product1Coefficient % 1) !== 0 ||
+      (this.product2Coefficient % 1) !== 0
+    ) {
+
+      // If reactant1Coefficient has a decimal
+      if((coefficientDecimal = this.reactant1Coefficient % 1) !== 0) {
+
+        // divide all Coefficients by the decimal (effectively multiplying by the inverse of the decimal)
+        this.reactant1Coefficient /= coefficientDecimal;
+        this.reactant2Coefficient /= coefficientDecimal;
+        this.product1Coefficient /= coefficientDecimal;
+        this.product2Coefficient /= coefficientDecimal;
+      }
+
+      // If reactant1Coefficient has a decimal
+      if((coefficientDecimal = this.reactant2Coefficient % 1) !== 0) {
+
+        // divide all Coefficients by the decimal (effectively multiplying by the inverse of the decimal)
+        this.reactant1Coefficient /= coefficientDecimal;
+        this.reactant2Coefficient /= coefficientDecimal;
+        this.product1Coefficient /= coefficientDecimal;
+        this.product2Coefficient /= coefficientDecimal;
+      }
+
+      // If reactant1Coefficient has a decimal
+      if((coefficientDecimal = this.product1Coefficient % 1) !== 0) {
+
+        // divide all Coefficients by the decimal (effectively multiplying by the inverse of the decimal)
+        this.reactant1Coefficient /= coefficientDecimal;
+        this.reactant2Coefficient /= coefficientDecimal;
+        this.product1Coefficient /= coefficientDecimal;
+        this.product2Coefficient /= coefficientDecimal;
+      }
+
+      // If reactant1Coefficient has a decimal
+      if((coefficientDecimal = this.product2Coefficient % 1) !== 0) {
+
+        // divide all Coefficients by the decimal (effectively multiplying by the inverse of the decimal)
+        this.reactant1Coefficient /= coefficientDecimal;
+        this.reactant2Coefficient /= coefficientDecimal;
+        this.product1Coefficient /= coefficientDecimal;
+        this.product2Coefficient /= coefficientDecimal;
+      }
     }
   }
 
