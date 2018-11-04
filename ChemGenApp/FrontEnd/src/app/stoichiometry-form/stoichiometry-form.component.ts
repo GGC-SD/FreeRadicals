@@ -85,12 +85,7 @@ export class StoichiometryFormComponent implements OnInit {
     this.answer.calculateFormulaWeight();
     this.answer.calculateMoleRatios();
     this.answer.displayKey = true;
-<<<<<<< HEAD
-    this.answer.stoichiometryGeneration();
-    // This method is no longer the right way about it,  Broken most things apart
-=======
     // this.answer.stoichiometryGeneration();
->>>>>>> Testing
     // this.answer.molecularNotationGeneration();
   }
 

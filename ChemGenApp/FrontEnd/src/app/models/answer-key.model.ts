@@ -2,17 +2,6 @@
 // and the answers calculated by the application
 export class AnswerKey {
   // Inputted data
-<<<<<<< HEAD
-  // Reactant 1
-  anion1: String;
-  cation1: String;
-  grams1: number;
-
-  // Reactant 2
-  anion2: String;
-  cation2: String;
-  grams2: number;
-=======
   public anion1: String;
   public cation1: String;
   public grams1: number;
@@ -28,7 +17,6 @@ export class AnswerKey {
   public cation2Charge: number;
   public anion2Charge: number;
   public displayKey: boolean;
->>>>>>> Testing
 
   // Calculated Data
   // Coalesced Molecular data (includes substrings, but not the solubility)
@@ -36,20 +24,6 @@ export class AnswerKey {
   reactant2: String;
   product1: String;
   product2: String;
-<<<<<<< HEAD
-
-  // Pre-coalescing of molecular data.  This has subscripts on the cations and anions, but alone, not put together
-  reactant1AnionSubscript: String;
-  reactact1CationSubscript: String;
-  reactant2AnionSubscript: String;
-  reactact2CationSubscript: String;
-  product1AnionSubscript: String;
-  product1CationSubscript: String;
-  product2AnionSubscript: String;
-  product2CationSubscript: String;
-
-  // The coefficients of the reactants and products, used in display and some calculations
-=======
   reactant1AnionSubscript: number;
   reactact1CationSubscript: number;
   reactant2AnionSubscript: number;
@@ -58,51 +32,19 @@ export class AnswerKey {
   product1CationSubscript: number;
   product2AnionSubscript: number;
   product2CationSubscript: number;
->>>>>>> Testing
   reactant1Coefficient: number;
   reactant2Coefficient: number;
   product1Coefficient: number;
   product2Coefficient: number;
-<<<<<<< HEAD
-
-  // The atomic mass of each cation and anion, used in some calculations
-  cation1Weight: number;
-  anion1Weight: number;
-  cation2Weight: number;
-  anion2Weight: number;
-
-  // Charges of each cation and anion, this is used in generating the molecular data and some calculations
-  cation1Charge: number;
-  anion1Charge: number;
-  cation2Charge: number;
-  anion2Charge: number;
-
-  // Final weight of each product.  This is displayed and used in some calculations.
-  product1Weight: number;
-  product2Weight: number;
-
-  // This determines whether the answer key is displayed or not on the webpage.
-  displayKey: boolean;
-=======
   product1Weight: number;
   product2Weight: number;
   moleRatioP1toR1: number;
   moleRatioP1toR2: number;
   moleRatioP2toR1: number;
   moleRatioP2toR2: number;
->>>>>>> Testing
 
   // The limiting reactant of the reaction.  This is displayed and determines which numbers in other parts are displayed.
   limitingReactant: String;
-<<<<<<< HEAD
-
-  // This is the ratios of moles from each product to each reactant.  This is displayed and used in minor calculations
-  moleRatioP1toR1: any;
-  moleRatioP1toR2: any;
-  moleRatioP2toR1: any;
-  moleRatioP2toR2: any;
-=======
->>>>>>> Testing
 
   // This is the moles of each item.  This is displayed in used in calculations.
   molesReactant1: String;
