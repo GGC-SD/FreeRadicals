@@ -2,7 +2,7 @@
   {
     "symbol": "Li",
     "name": "Lithium",
-    "mass": 1.0003,
+    "mass": 6.9412,
     "charge": 1
   },
   {
@@ -82,5 +82,11 @@
     "name": "Silver",
     "mass": 107.87,
     "charge": 1
+  },
+  {
+    "symbol": "Sr",
+    "name": "Strontium",
+    "mass": 87.62,
+    "charge": 2
   }
 ]

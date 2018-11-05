@@ -75,6 +75,7 @@ export class AnswerKey {
 
   // The limiting reactant of the reaction.  This is displayed and determines which numbers in other parts are displayed.
   public limitingReactant: String;
+  public nonLimitingReactant: String;
 
   // Yield, based on limiting reactant
   public yieldProduct1: number;
@@ -396,6 +397,7 @@ export class AnswerKey {
 
       // set the limiting reactant to reactant 1
       this.limitingReactant = this.reactant1;
+      this.nonLimitingReactant = this.reactant2;
 
     } else { // otherwise
 
@@ -410,6 +412,7 @@ export class AnswerKey {
 
       // set the limiting reactant
       this.limitingReactant = this.reactant2;
+      this.nonLimitingReactant = this.reactant1;
     }
   }
 
