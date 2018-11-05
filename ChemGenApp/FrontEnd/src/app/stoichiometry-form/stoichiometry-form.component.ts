@@ -79,11 +79,29 @@ export class StoichiometryFormComponent implements OnInit {
       }
     }
     this.answer.grams2 = this.formGroup.get('grams2').value;
+
+    // calculate the subscripts
     this.answer.determineSubscript();
+
+    // calculate the coefficients
     this.answer.balanceEquation();
+
+    // put together the molecules (using subscripts)
     this.answer.setMolecules();
+
+    // calculate the formula weights (molar masses)
     this.answer.calculateFormulaWeight();
+
+    // calculate the molar ratios of everything
     this.answer.calculateMoleRatios();
+
+    // calculates actual moles of everything
+    this.answer.calculateMoles();
+
+    // determines the limiting reactant
+    this.answer.determineLimitingReactant();
+
+    // display the answer key
     this.answer.displayKey = true;
     // this.answer.stoichiometryGeneration();
     // this.answer.molecularNotationGeneration();

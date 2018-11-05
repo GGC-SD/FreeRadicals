@@ -1,17 +1,6 @@
 # FrontEnd
 
-## Installation Steps
-
-1. Create a folder named **ChemGenApp** and navigate to it using either Git Bash or Windows Command Prompt. *I would recommend doing all the installs through Command Prompt because it will give a status bar for the download and Git Bash will not. When running the web server, I would recommend Git Bash.*
-2. In the **ChemGenApp** folder, run the command **npm i -g @angular/cli@6.2.1**.
-3. In the **ChemGenApp** folder, run the command **ng new FrontEnd --style=scss**. The *style* argument is important
-4. Navigate to the **FrontEnd** folder that was generated in the previous command.
-5. In the **FrontEnd** folder, run the command **npm install npm**. *This will update Node Package Manager, **not** Node.js*
-6. In the **FrontEnd** folder, run the command **npm install bootstrap@4.1.3**.
-7. In the **FrontEnd** folder, run the command **npm install jquery@3.3.1**.
-8. In the **FrontEnd** folder, run the command **npm install popper.js@1.14.4**.
-9. In the **FrontEnd** folder, run the command **npm install @ng-bootstrap/ng-bootstrap@3.2.0**.
-10. In Git Bash, go to the **FrontEnd** folder and run the command **ng serve** and then use your browser to navigate to **localhost:4200** to test installation.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.1.
 
 ## Development server
 
