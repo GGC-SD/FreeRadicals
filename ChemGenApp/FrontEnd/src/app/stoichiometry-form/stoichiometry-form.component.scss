@@ -1,0 +1,20 @@
+@import '~@angular/material/theming';
+select{
+    font-size: 100%;
+}
+input{
+    width:300px;
+    font-size:90%;
+}
+input.ng-untouched.ng-pristine.ng-valid{
+    font-size: 90%;
+}
+input.ng-pristine.ng-valid.ng-touched{
+    font-size: 90%;
+}
+input.ng-valid.ng-dirty.ng-touched{
+    font-size: 90%;
+}
+button{
+    font-size: 100%;
+}
