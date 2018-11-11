@@ -1,3 +1,5 @@
+import { tick } from "@angular/core/testing";
+
 // Answer key to be used to hold the data inputed by the professors
 // and the answers calculated by the application
 export class AnswerKey {
@@ -206,7 +208,7 @@ export class AnswerKey {
   // Balances equation based on subscripts and default coefficients
   public balanceEquation(): void {
     
-    /* Debug, add/remove the * / here to enable/disable the code -> */
+    /* Debug, add/remove the * / here to enable/disable the code -> * /
     console.log("The following data is printed for debug purposes, please disable this block in answer-key.model.ts if you are not debugging the system.");
     console.log("Began Balance Equation");
     /* */
@@ -222,7 +224,7 @@ export class AnswerKey {
     let reactant2AnionAmount: number = this.reactant2AnionSubscript * this.reactant2Coefficient;
     let product2AnionAmount: number = this.product2AnionSubscript * this.product2Coefficient;
 
-    /* Debug, add/remove the * / here to enable/disable the code -> */
+    /* Debug, add/remove the * / here to enable/disable the code -> * /
     console.log("The following data is printed for debug purposes, please disable this block in answer-key.model.ts if you are not debugging the system.");
     console.log("Finished assigning variables and beginning while loop");
     let x: number = 0;
@@ -236,7 +238,7 @@ export class AnswerKey {
       reactant2AnionAmount !== product1AnionAmount
     ) {
 
-      /* Debug, add/remove the * / here to enable/disable the code -> */
+      /* Debug, add/remove the * / here to enable/disable the code -> * /
       console.log("The following data is printed for debug purposes, please disable this block in answer-key.model.ts if you are not debugging the system.");
       x++;
       console.log("Beginning loop itteration " + x);
@@ -302,13 +304,13 @@ export class AnswerKey {
         }
       } 
 
-      /* Debug, add/remove the * / here to enable/disable the code -> */
+      /* Debug, add/remove the * / here to enable/disable the code -> * /
       console.log("The following data is printed for debug purposes, please disable this block in answer-key.model.ts if you are not debugging the system.");
       console.log("Finished loop itteration " + x);
       /* */
     }
 
-    /* Debug, add/remove the * / here to enable/disable the code -> */
+    /* Debug, add/remove the * / here to enable/disable the code -> * /
     console.log("The following data is printed for debug purposes, please disable this block in answer-key.model.ts if you are not debugging the system.");
     console.log("Finished main loop and beginning fixDecimalCoefficients");
     /* */
@@ -371,6 +373,61 @@ export class AnswerKey {
         this.product1Coefficient /= coefficientDecimal;
         this.product2Coefficient /= coefficientDecimal;
       }
+    }
+
+    this.simplifyCoefficients();
+  }
+
+  // This method takes coefficients like 2 2 4 2 and simplifies them to coefficients like 1 1 2 1
+  public simplifyCoefficients(): void {
+
+    if (
+      this.reactant1Coefficient % this.product2Coefficient === 0 && 
+      this.reactant2Coefficient % this.product2Coefficient === 0 && 
+      this.product1Coefficient % this.product2Coefficient === 0
+    ) { // Checking everything against product 2's coefficient
+
+      this.reactant1Coefficient /= this.product2Coefficient;
+      this.reactant2Coefficient /= this.product2Coefficient;
+      this.product1Coefficient /= this.product2Coefficient;
+      this.product2Coefficient /= this.product2Coefficient;
+
+    } else if (
+      this.reactant1Coefficient % this.product1Coefficient === 0 &&
+      this.reactant2Coefficient % this.product1Coefficient === 0 &&
+      this.product2Coefficient % this.product1Coefficient === 0
+    ) { // Checking everything against product 1's coefficient
+
+      this.reactant1Coefficient /= this.product1Coefficient;
+      this.reactant2Coefficient /= this.product1Coefficient;
+      this.product1Coefficient /= this.product1Coefficient;
+      this.product2Coefficient /= this.product1Coefficient;
+      
+    } else if (
+      this.reactant1Coefficient % this.reactant2Coefficient === 0 && 
+      this.product1Coefficient % this.reactant2Coefficient === 0 &&
+      this.product2Coefficient % this.reactant2Coefficient === 0
+    ) { // Checking everything against reactant 2's coefficient
+
+      this.reactant1Coefficient /= this.reactant2Coefficient;
+      this.reactant2Coefficient /= this.reactant2Coefficient;
+      this.product1Coefficient /= this.reactant2Coefficient;
+      this.product2Coefficient /= this.reactant2Coefficient;
+      
+    } else if (
+      this.reactant2Coefficient % this.reactant1Coefficient === 0 && 
+      this.product1Coefficient % this.reactant1Coefficient === 0 &&
+      this.product2Coefficient % this.reactant1Coefficient === 0
+    ) { // Checking everything against reactant 1's coefficient
+
+      this.reactant1Coefficient /= this.reactant1Coefficient;
+      this.reactant2Coefficient /= this.reactant1Coefficient;
+      this.product1Coefficient /= this.reactant1Coefficient;
+      this.product2Coefficient /= this.reactant1Coefficient;
+      
+    } else { 
+
+      // DO NOTHING, CAUSE IT'S SIMPLIFIED AS IS
     }
   }
 
