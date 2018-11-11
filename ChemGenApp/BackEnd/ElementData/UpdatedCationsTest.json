@@ -82,5 +82,11 @@
     "name": "Silver",
     "mass": 107.868,
     "charge": 1
+  },
+  {
+    "symbol": "Sr",
+    "name": "Strontium",
+    "mass": 87.62,
+    "charge": 2
   }
 ]

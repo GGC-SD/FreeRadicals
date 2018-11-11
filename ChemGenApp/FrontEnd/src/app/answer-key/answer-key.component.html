@@ -15,21 +15,21 @@
   <br>
   The formula weight for {{ answer.product2 }} is: {{ answer.product2Weight }}
   <br><br>
-  0.236 moles of {{ answer.reactant1 }} yields 0.236 moles of {{ answer.product2 }}
+  {{ answer.molesReactant1 }} moles of {{ answer.reactant1 }} yields {{ answer.molesP2FromR1 }} moles of {{ answer.product2 }}
   <br>
-  0.236 moles of {{ answer.reactant1 }} yields 0.236 moles of {{ answer.product1 }}
+  {{ answer.molesReactant1 }} moles of {{ answer.reactant1 }} yields {{ answer.molesP1FromR1 }} moles of {{ answer.product1 }}
   <br>
-  0.097 moles of {{ answer.reactant2 }} yields 0.097 moles of {{ answer.product2 }}
+  {{ answer.molesReactant2 }} moles of {{ answer.reactant2 }} yields {{ answer.molesP2FromR2 }} moles of {{ answer.product2 }}
   <br>
-  0.097 moles of {{ answer.reactant2 }} yields 0.097 moles of {{ answer.product1 }}
+  {{ answer.molesReactant2 }} moles of {{ answer.reactant2 }} yields {{ answer.molesP1FromR2 }} moles of {{ answer.product1 }}
   <br><br>
   The limiting reactant is: {{ answer.limitingReactant }}
   <br>
-  {{ answer.reactant2 }} yields 8.440 grams of {{ answer.product1 }} and 5.680 grams of {{ answer.product2 }}
+  {{ answer.limitingReactant }} yields {{ answer.yieldProduct1 }} grams of {{ answer.product1 }} and {{ answer.yieldProduct2 }} grams of {{ answer.product2 }}
   <br>
-  The grams used up is: 4.120
+  The grams used up is: {{ answer.gramsUsed }} g
   <br>
-  The amount of {{ answer.reactant1 }} is 5.880 grams
+  The remaining amount of {{ answer.nonLimitingReactant }} is {{ answer.gramsRemaining }} g
   <br>
-  the sum of excess plus used reagents 20.0 ought to equal the grams of compound 1 {{ answer.grams1 }} and grams of compound 2 {{ answer.grams2 }}
+  the sum of excess plus used reagents ( {{ answer.sumOfAll }} g) ought to equal the grams of compound 1 ({{ answer.grams1 }} g) and grams of compound 2 ({{ answer.grams2 }} g)
 </ng-container>
