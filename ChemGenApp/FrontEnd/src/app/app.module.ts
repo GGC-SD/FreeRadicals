@@ -9,6 +9,7 @@ import { StoichiometryFormComponent } from './stoichiometry-form/stoichiometry-f
 import { AnswerKeyComponent } from './answer-key/answer-key.component';
 import { ElementsService } from './services/elements.service';
 
+
 const routes: Routes = [
   // { path: '', redirectTo: 'answer', pathMatch: 'full' },
   // this is the beginning of the ID recognition, will need to have something like :id

@@ -20,13 +20,13 @@
   {
     "symbol": "NH4",
     "name": "Ammonium",
-    "mass": 18,
+    "mass": 18.038,
     "charge": 1
   },
   {
     "symbol": "Mg",
     "name": "Magnesium",
-    "mass": 24.035,
+    "mass": 24.305,
     "charge": 2
   },
   {
@@ -38,13 +38,13 @@
   {
     "symbol": "Ba",
     "name": "Barium",
-    "mass": 137.33,
+    "mass": 137.328,
     "charge": 2
   },
   {
     "symbol": "Zn",
     "name": "Zinc",
-    "mass": 65.38,
+    "mass": 65.382,
     "charge": 2
   },
   {
@@ -74,13 +74,13 @@
   {
     "symbol": "Pb",
     "name": "Lead",
-    "mass": 207.2,
+    "mass": 207.21,
     "charge": 2
   },
   {
     "symbol": "Ag",
     "name": "Silver",
-    "mass": 107.87,
+    "mass": 107.868,
     "charge": 1
   },
   {

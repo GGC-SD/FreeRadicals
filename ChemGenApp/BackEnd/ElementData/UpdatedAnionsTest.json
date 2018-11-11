@@ -8,61 +8,61 @@
   {
     "symbol": "I",
     "name": "Iodine",
-    "mass": 126.9,
+    "mass": 126.904,
     "charge": -1
   },
   {
     "symbol": "Cl",
     "name": "Chlorine",
-    "mass": 35.45,
+    "mass": 35.453,
     "charge": -1
   },
   {
     "symbol": "NO3",
     "name": "Nitrate",
-    "mass": 62,
+    "mass": 61.990,
     "charge": -1
   },
   {
     "symbol": "CO3",
     "name": "Carbonate",
-    "mass": 60.01,
+    "mass": 60.009,
     "charge": -2
   },
   {
     "symbol": "ClO3",
     "name": "Chlorate",
-    "mass": 83.447,
+    "mass": 83.451,
     "charge": -1
   },
   {
     "symbol": "OH",
     "name": "Hydroxide",
-    "mass": 17.01,
+    "mass": 17.007,
     "charge": -1
   },
   {
     "symbol": "O2",
     "name": "Peroxide",
-    "mass": 32,
+    "mass": 31.999,
     "charge": -2
   },
   {
     "symbol": "PO4",
     "name": "Phosphate",
-    "mass": 94.9714,
+    "mass": 94.971,
     "charge": -3
   },
   {
     "symbol": "SO4",
     "name": "Sulfate",
-    "mass": 96.06,
+    "mass": 96.063,
     "charge": -2
   },
   {
     "symbol": "Cr2O7",
     "name": "Dichromate",
-    "mass": 215.985,
+    "mass": 215.988,
     "charge": -2
   }
 ]
