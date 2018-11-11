@@ -76,18 +76,39 @@ export class StoichiometryFormComponent implements OnInit {
       if (this.answer.cation2 === this.cations[i].symbol) {
         this.answer.cation2Weight = this.cations[i].mass;
         this.answer.cation2Charge = this.cations[i].charge;
+        console.log("Reading data from: " + this.cations[i].symbol);
       }
+      console.log("Reading data from: " + this.cations[i].symbol);
     }
     this.answer.grams2 = this.formGroup.get('grams2').value;
 
+    /* Debug, add/remove the * / here to enable/disable the code -> */
+    console.log("The following data is printed for debug purposes, please disable this block in stoichiometry-form.component.ts if you are not debugging the system.");
+    console.log("Finished gathering data from form");
+    /* */
     // calculate the subscripts
     this.answer.determineSubscript();
 
+    /* Debug, add/remove the * / here to enable/disable the code -> */
+    console.log("The following data is printed for debug purposes, please disable this block in stoichiometry-form.component.ts if you are not debugging the system.");
+    console.log("Finished determineSubscript()");
+    /* */
+    
     // calculate the coefficients
     this.answer.balanceEquation();
 
+    /* Debug, add/remove the * / here to enable/disable the code -> */
+    console.log("The following data is printed for debug purposes, please disable this block in stoichiometry-form.component.ts if you are not debugging the system.");
+    console.log("Finished balanceEquation()");
+    /* */
+
     // put together the molecules (using subscripts)
     this.answer.setMolecules();
+
+    /* Debug, add/remove the * / here to enable/disable the code -> */
+    console.log("The following data is printed for debug purposes, please disable this block in stoichiometry-form.component.ts if you are not debugging the system.");
+    console.log("Finished setMolecules()");
+    /* */
 
     // calculate the formula weights (molar masses)
     this.answer.calculateFormulaWeight();
@@ -105,6 +126,18 @@ export class StoichiometryFormComponent implements OnInit {
     this.answer.displayKey = true;
     // this.answer.stoichiometryGeneration();
     // this.answer.molecularNotationGeneration();
+
+    /* Debug, add/remove the * / here to enable/disable the code -> */
+    console.log("The following data is printed for debug purposes, please disable this block in stoichiometry-form.component.ts if you are not debugging the system.");
+    console.log("Cations: " + this.cations);
+    console.log("Anions: " + this.anions);
+    console.log("Cation 1: " + this.answer.cation1);
+    console.log("Anion 1: " + this.answer.anion1);
+    console.log("Grams 1: " + this.answer.grams1);
+    console.log("Cation 2: " + this.answer.cation2);
+    console.log("Anion 2: " + this.answer.anion2);
+    console.log("Grams 2: " + this.answer.grams2);
+    /**/
   }
 
   // Creates the form and sets default prioperties
