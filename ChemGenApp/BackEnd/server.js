@@ -16,8 +16,9 @@ const router = express.Router();
 // This stuff is the code to grab the json files so that they can be sent to the Angular frontend
 const anionData = require('./ElementData/UpdatedAnionsTest.json');
 const cationData = require('./ElementData/UpdatedCationsTest.json');
-const solubility1Data = require('./ElementData/SolubilityTest.json');
-const solubility2Data = require('./ElementData/SolubilityTest2.json');
+const solubility1Data = require('./ElementData/SolubilityTest.json'); // This is for testing different layouts of the solubility data
+const solubility2Data = require('./ElementData/SolubilityTest2.json'); // Further testing, but not used at the current time.
+const solubilityTemplate = require('./ElementData/SolubilityTemplate.json'); // Current "correct" data
 //const elementData = require('path/to/elementData.json');
 
 app.use(cors());
@@ -47,6 +48,10 @@ router.route('/solubility1').get((req, res) => {
 
 router.route('/solubility2').get((req, res) => {
 	res.json(solubility2Data);
+});
+
+router.route('/solubility').get((req, res) => {
+	res.json(solubilityTemplate);
 });
 
 /* NOT USED YET, NO FILE FOR IT TO REFERENCE, WILL CAUSE ERRORS IF REFERENCED

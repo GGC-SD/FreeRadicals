@@ -1,7 +1,7 @@
 <div class="header">Answer Key</div>
 <ng-container *ngIf="answer.displayKey">
   <br>
-  <ng-container *ngIf="answer.reactant1Coefficient > 1">{{ answer.reactant1Coefficient }}</ng-container>{{ answer.reactant1 }}(aq) + <ng-container *ngIf="answer.reactant2Coefficient > 1">{{ answer.reactant2Coefficient }}</ng-container>{{ answer.reactant2 }}(aq) => <ng-container *ngIf="answer.product1Coefficient > 1">{{ answer.product1Coefficient }}</ng-container>{{ answer.product1 }}(aq) + <ng-container *ngIf="answer.product2Coefficient > 1">{{ answer.product2Coefficient }}</ng-container>{{ answer.product2 }}(aq)
+  <ng-container *ngIf="answer.reactant1Coefficient > 1">{{ answer.reactant1Coefficient }}</ng-container>{{ answer.reactant1 }}{{ answer.reactant1Solubility }} + <ng-container *ngIf="answer.reactant2Coefficient > 1">{{ answer.reactant2Coefficient }}</ng-container>{{ answer.reactant2 }}{{ answer.reactant2Solubility }} => <ng-container *ngIf="answer.product1Coefficient > 1">{{ answer.product1Coefficient }}</ng-container>{{ answer.product1 }}{{ answer.product1Solubility }} + <ng-container *ngIf="answer.product2Coefficient > 1">{{ answer.product2Coefficient }}</ng-container>{{ answer.product2 }}{{ answer.product2Solubility }}
   <br><br>
   mole ratio of {{ answer.product1 }} to {{ answer.reactant1 }} is: {{ answer.moleRatioP1toR1 }}
   <br>

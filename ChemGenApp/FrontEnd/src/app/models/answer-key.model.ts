@@ -1,9 +1,15 @@
+import { tick } from "@angular/core/testing";
+
 // Answer key to be used to hold the data inputed by the professors
 // and the answers calculated by the application
 export class AnswerKey {
   
   // Whether or not the output is displayed
   public displayKey: boolean;
+
+  // Whether or not to get the solubility data
+  // This is to avoid trying to calculate using empty objects
+  public findSolubility: boolean;
 
   // Inputted data
   // Reactant 1
@@ -99,11 +105,24 @@ export class AnswerKey {
   public molesP1FromR2: number;
   public molesP2FromR2: number;
 
+  // Solubility data input
+  public cation1SolubilityData: any [];
+  public cation2SolubilityData: any [];
+
+  // Actual saved solubility data, used for output onto the html
+  public reactant1Solubility: String;
+  public reactant2Solubility: String;
+  public product1Solubility: String;
+  public product2Solubility: String;
+
   // Runs at the beginning (obviously)
   constructor() {
 
     // Make sure the display is off by default
     this.displayKey = false;
+
+    // Display the solubility when loaded by default
+    this.findSolubility = true;
 
     // Default the Coefficients to 1
     this.reactant1Coefficient = 1;
@@ -189,9 +208,14 @@ export class AnswerKey {
   // Balances equation based on subscripts and default coefficients
   public balanceEquation(): void {
     
+    /* Debug, add/remove the * / here to enable/disable the code -> * /
+    console.log("The following data is printed for debug purposes, please disable this block in answer-key.model.ts if you are not debugging the system.");
+    console.log("Began Balance Equation");
+    /* */
+
     // Determines the amount of cations and anions in each molecule based on subscript and coefficient
     // This keeps track of how many there are in each molecule, and checks that they all are the same.
-    let reactact1CationAmount: number = this.reactant1CationSubscript * this.reactant1Coefficient;
+    let reactant1CationAmount: number = this.reactant1CationSubscript * this.reactant1Coefficient;
     let product1CationAmount: number = this.product1CationSubscript * this.product1Coefficient;
     let reactant1AnionAmount: number = this.reactant1AnionSubscript * this.reactant1Coefficient;
     let product1AnionAmount: number = this.product1AnionSubscript * this.product1Coefficient;
@@ -200,25 +224,46 @@ export class AnswerKey {
     let reactant2AnionAmount: number = this.reactant2AnionSubscript * this.reactant2Coefficient;
     let product2AnionAmount: number = this.product2AnionSubscript * this.product2Coefficient;
 
+    /* Debug, add/remove the * / here to enable/disable the code -> * /
+    console.log("The following data is printed for debug purposes, please disable this block in answer-key.model.ts if you are not debugging the system.");
+    console.log("Finished assigning variables and beginning while loop");
+    let x: number = 0;
+    /* */
+
     // While loops tests that the amounts on either side of the equation are equal
     while (
-      reactact1CationAmount !== product1CationAmount ||
+      reactant1CationAmount !== product1CationAmount ||
       reactant1AnionAmount !== product2AnionAmount ||
       reactant2CationAmount !== product2CationAmount || 
       reactant2AnionAmount !== product1AnionAmount
     ) {
 
+      /* Debug, add/remove the * / here to enable/disable the code -> * /
+      console.log("The following data is printed for debug purposes, please disable this block in answer-key.model.ts if you are not debugging the system.");
+      x++;
+      console.log("Beginning loop itteration " + x);
+      console.log("Stored Data: ");
+      console.log("reactant1CationAmount: " + reactant1CationAmount);
+      console.log("product1CationAmount: " + product1CationAmount);
+      console.log("reactant2CationAmount: " + reactant2CationAmount);
+      console.log("product2CationAmount: " + product2CationAmount);
+      console.log("reactant1AnionAmount: " + reactant1AnionAmount);
+      console.log("product1AnionAmount: " + product1AnionAmount);
+      console.log("reactant2AnionAmount: " + reactant2AnionAmount);
+      console.log("product2AnionAmount: " + product2AnionAmount);
+      /* */
+
       // Tests if cation amounts are the same
-      if (reactact1CationAmount !== product1CationAmount) {
+      if (reactant1CationAmount !== product1CationAmount) {
 
         // If not the same test which is bigger and increase the appropriate coefficient
-        if (reactact1CationAmount > product1CationAmount) {
-          this.product1Coefficient *= reactact1CationAmount / product1CationAmount;
+        if (reactant1CationAmount > product1CationAmount) {
+          this.product1Coefficient *= reactant1CationAmount / product1CationAmount;
           product1CationAmount = this.product1CationSubscript * this.product1Coefficient;
           product1AnionAmount = this.product1AnionSubscript * this.product1Coefficient;
         } else {
-          this.reactant1Coefficient *= product1CationAmount / reactact1CationAmount;
-          reactact1CationAmount = this.reactant1CationSubscript * this.reactant1Coefficient;
+          this.reactant1Coefficient *= product1CationAmount / reactant1CationAmount;
+          reactant1CationAmount = this.reactant1CationSubscript * this.reactant1Coefficient;
           reactant1AnionAmount = this.reactant1AnionSubscript * this.reactant1Coefficient;
         }
       // Tests if cation amounts are the same
@@ -241,8 +286,8 @@ export class AnswerKey {
           product2CationAmount = this.product2CationSubscript * this.product2Coefficient;
           product2AnionAmount = this.product2AnionSubscript * this.product2Coefficient;
         } else {
-          this.reactant1Coefficient *= product1CationAmount / reactact1CationAmount;
-          reactact1CationAmount = this.reactant1CationSubscript * this.reactant1Coefficient;
+          this.reactant1Coefficient *= product1CationAmount / reactant1CationAmount;
+          reactant1CationAmount = this.reactant1CationSubscript * this.reactant1Coefficient;
           reactant1AnionAmount = this.reactant1AnionSubscript * this.reactant1Coefficient;
         }
       // Tests if anion amounts are the same
@@ -258,7 +303,18 @@ export class AnswerKey {
           reactant2AnionAmount = this.reactant2AnionSubscript * this.reactant2Coefficient;
         }
       } 
+
+      /* Debug, add/remove the * / here to enable/disable the code -> * /
+      console.log("The following data is printed for debug purposes, please disable this block in answer-key.model.ts if you are not debugging the system.");
+      console.log("Finished loop itteration " + x);
+      /* */
     }
+
+    /* Debug, add/remove the * / here to enable/disable the code -> * /
+    console.log("The following data is printed for debug purposes, please disable this block in answer-key.model.ts if you are not debugging the system.");
+    console.log("Finished main loop and beginning fixDecimalCoefficients");
+    /* */
+
     // As there may be decimal coefficients, this needs to be corrected right after balancing.
     this.fixDecimalCoefficients();
   }
@@ -318,6 +374,61 @@ export class AnswerKey {
         this.product2Coefficient /= coefficientDecimal;
       }
     }
+
+    this.simplifyCoefficients();
+  }
+
+  // This method takes coefficients like 2 2 4 2 and simplifies them to coefficients like 1 1 2 1
+  public simplifyCoefficients(): void {
+
+    if (
+      this.reactant1Coefficient % this.product2Coefficient === 0 && 
+      this.reactant2Coefficient % this.product2Coefficient === 0 && 
+      this.product1Coefficient % this.product2Coefficient === 0
+    ) { // Checking everything against product 2's coefficient
+
+      this.reactant1Coefficient /= this.product2Coefficient;
+      this.reactant2Coefficient /= this.product2Coefficient;
+      this.product1Coefficient /= this.product2Coefficient;
+      this.product2Coefficient /= this.product2Coefficient;
+
+    } else if (
+      this.reactant1Coefficient % this.product1Coefficient === 0 &&
+      this.reactant2Coefficient % this.product1Coefficient === 0 &&
+      this.product2Coefficient % this.product1Coefficient === 0
+    ) { // Checking everything against product 1's coefficient
+
+      this.reactant1Coefficient /= this.product1Coefficient;
+      this.reactant2Coefficient /= this.product1Coefficient;
+      this.product1Coefficient /= this.product1Coefficient;
+      this.product2Coefficient /= this.product1Coefficient;
+      
+    } else if (
+      this.reactant1Coefficient % this.reactant2Coefficient === 0 && 
+      this.product1Coefficient % this.reactant2Coefficient === 0 &&
+      this.product2Coefficient % this.reactant2Coefficient === 0
+    ) { // Checking everything against reactant 2's coefficient
+
+      this.reactant1Coefficient /= this.reactant2Coefficient;
+      this.reactant2Coefficient /= this.reactant2Coefficient;
+      this.product1Coefficient /= this.reactant2Coefficient;
+      this.product2Coefficient /= this.reactant2Coefficient;
+      
+    } else if (
+      this.reactant2Coefficient % this.reactant1Coefficient === 0 && 
+      this.product1Coefficient % this.reactant1Coefficient === 0 &&
+      this.product2Coefficient % this.reactant1Coefficient === 0
+    ) { // Checking everything against reactant 1's coefficient
+
+      this.reactant1Coefficient /= this.reactant1Coefficient;
+      this.reactant2Coefficient /= this.reactant1Coefficient;
+      this.product1Coefficient /= this.reactant1Coefficient;
+      this.product2Coefficient /= this.reactant1Coefficient;
+      
+    } else { 
+
+      // DO NOTHING, CAUSE IT'S SIMPLIFIED AS IS
+    }
   }
 
   // This method calculates the mole rations of the products to the reactants
@@ -353,28 +464,63 @@ export class AnswerKey {
   // This method is meant to function like his reaction_solubility(a) function
   // It generates each item's solubility information.
   public solubilityGeneration() {
-    
-    const solubilityData = {}; // Fill this with all of the solubility data, or at least send the solubility data here so that it can be used under the name solubilityData
 
-    // storage for sending the data.
-    const solubility = [];
+    /* Debug add/remove the space in the * / to enable/disable the debug code -> */
+    console.log("solubilityGeneration() Began");
+    console.log(this.findSolubility);
+    console.log("Cation1 " + this.cation1SolubilityData);
+    console.log("Cation2 " + this.cation2SolubilityData);
+    /* */
 
-    // add all of the solubility data to the array to be sent where it's needed?
-    solubility.push(solubilityData[this.cation1 + ''][this.anion1 + '']);
-    solubility.push(solubilityData[this.cation2 + ''][this.anion2 + '']);
-    solubility.push(solubilityData[this.cation1 + ''][this.anion2 + '']);
-    solubility.push(solubilityData[this.cation2 + ''][this.anion1 + '']);
-    
-    // Log command, to be removed after testing is done with this method (or commented out)
-    console.log('solubilty: ' + solubility);
+    if (this.findSolubility) { // If the data was loaded, then figure out each molecule's solubility
 
-    // Save the solubility data of the molecules.
-    /* add a * / to the end of this line to enable the code (does not work as of this writing)
-    this.reactant1Solubility = solubility[0];
-    this.reactant2Solubility = solubility[1];
-    this.product1Solubility = solubility[2];
-    this.product2Solubility = solubility[3];
-    /**/
+      /*
+      0 = aqueous = (aq)
+      1 = solid = (s)
+      */
+
+      // Reactant 1
+      if (this.cation1SolubilityData[this.anion1 + ''] === 1) {
+        this.reactant1Solubility = "(s)";
+      } else if (this.cation1SolubilityData[this.anion1 + ''] === 0) {
+        this.reactant1Solubility = "(aq)";
+      } else {
+        this.reactant1Solubility = "?";
+      }
+
+      // Reactant 2
+      if (this.cation2SolubilityData[this.anion2 + ''] === 1) {
+        this.reactant2Solubility = "(s)";
+      } else if (this.cation2SolubilityData[this.anion2 + ''] === 0) {
+        this.reactant2Solubility = "(aq)";
+      } else {
+        this.reactant2Solubility = "?";
+      }
+
+      // Product 1
+      if (this.cation1SolubilityData[this.anion2 + ''] === 1) {
+        this.product1Solubility = "(s)";
+      } else if (this.cation1SolubilityData[this.anion2 + ''] === 0) {
+        this.product1Solubility = "(aq)";
+      } else {
+        this.product1Solubility = "?";
+      }
+
+      // Product 2
+      if (this.cation2SolubilityData[this.anion1 + ''] === 1) {
+        this.product2Solubility = "(s)";
+      } else if (this.cation2SolubilityData[this.anion1 + ''] === 0) {
+        this.product2Solubility = "(aq)";
+      } else {
+        this.product2Solubility = "?";
+      }
+    } else { // Otherwise, set the solubility to empty values to avoid issues (probably)
+
+      this.reactant1Solubility = '';
+      this.reactant2Solubility = '';
+      this.product1Solubility = '';
+      this.product2Solubility = '';
+    }
   }
 
   // This method calculates the moles of each and determines the limiting reactant
