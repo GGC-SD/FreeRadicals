@@ -5,6 +5,10 @@ export class AnswerKey {
   // Whether or not the output is displayed
   public displayKey: boolean;
 
+  // Whether or not to get the solubility data
+  // This is to avoid trying to calculate using empty objects
+  public findSolubility: boolean;
+
   // Inputted data
   // Reactant 1
   public anion1: String;
@@ -99,11 +103,24 @@ export class AnswerKey {
   public molesP1FromR2: number;
   public molesP2FromR2: number;
 
+  // Solubility data input
+  public cation1SolubilityData: any [];
+  public cation2SolubilityData: any [];
+
+  // Actual saved solubility data, used for output onto the html
+  public reactant1Solubility: String;
+  public reactant2Solubility: String;
+  public product1Solubility: String;
+  public product2Solubility: String;
+
   // Runs at the beginning (obviously)
   constructor() {
 
     // Make sure the display is off by default
     this.displayKey = false;
+
+    // Display the solubility when loaded by default
+    this.findSolubility = true;
 
     // Default the Coefficients to 1
     this.reactant1Coefficient = 1;
@@ -390,28 +407,63 @@ export class AnswerKey {
   // This method is meant to function like his reaction_solubility(a) function
   // It generates each item's solubility information.
   public solubilityGeneration() {
-    
-    const solubilityData = {}; // Fill this with all of the solubility data, or at least send the solubility data here so that it can be used under the name solubilityData
 
-    // storage for sending the data.
-    const solubility = [];
+    /* Debug add/remove the space in the * / to enable/disable the debug code -> */
+    console.log("solubilityGeneration() Began");
+    console.log(this.findSolubility);
+    console.log("Cation1 " + this.cation1SolubilityData);
+    console.log("Cation2 " + this.cation2SolubilityData);
+    /* */
 
-    // add all of the solubility data to the array to be sent where it's needed?
-    solubility.push(solubilityData[this.cation1 + ''][this.anion1 + '']);
-    solubility.push(solubilityData[this.cation2 + ''][this.anion2 + '']);
-    solubility.push(solubilityData[this.cation1 + ''][this.anion2 + '']);
-    solubility.push(solubilityData[this.cation2 + ''][this.anion1 + '']);
-    
-    // Log command, to be removed after testing is done with this method (or commented out)
-    console.log('solubilty: ' + solubility);
+    if (this.findSolubility) { // If the data was loaded, then figure out each molecule's solubility
 
-    // Save the solubility data of the molecules.
-    /* add a * / to the end of this line to enable the code (does not work as of this writing)
-    this.reactant1Solubility = solubility[0];
-    this.reactant2Solubility = solubility[1];
-    this.product1Solubility = solubility[2];
-    this.product2Solubility = solubility[3];
-    /**/
+      /*
+      0 = aqueous = (aq)
+      1 = solid = (s)
+      */
+
+      // Reactant 1
+      if (this.cation1SolubilityData[this.anion1 + ''] === 1) {
+        this.reactant1Solubility = "(s)";
+      } else if (this.cation1SolubilityData[this.anion1 + ''] === 0) {
+        this.reactant1Solubility = "(aq)";
+      } else {
+        this.reactant1Solubility = "?";
+      }
+
+      // Reactant 2
+      if (this.cation2SolubilityData[this.anion2 + ''] === 1) {
+        this.reactant2Solubility = "(s)";
+      } else if (this.cation2SolubilityData[this.anion2 + ''] === 0) {
+        this.reactant2Solubility = "(aq)";
+      } else {
+        this.reactant2Solubility = "?";
+      }
+
+      // Product 1
+      if (this.cation1SolubilityData[this.anion2 + ''] === 1) {
+        this.product1Solubility = "(s)";
+      } else if (this.cation1SolubilityData[this.anion2 + ''] === 0) {
+        this.product1Solubility = "(aq)";
+      } else {
+        this.product1Solubility = "?";
+      }
+
+      // Product 2
+      if (this.cation2SolubilityData[this.anion1 + ''] === 1) {
+        this.product2Solubility = "(s)";
+      } else if (this.cation2SolubilityData[this.anion1 + ''] === 0) {
+        this.product2Solubility = "(aq)";
+      } else {
+        this.product2Solubility = "?";
+      }
+    } else { // Otherwise, set the solubility to empty values to avoid issues (probably)
+
+      this.reactant1Solubility = '';
+      this.reactant2Solubility = '';
+      this.product1Solubility = '';
+      this.product2Solubility = '';
+    }
   }
 
   // This method calculates the moles of each and determines the limiting reactant
