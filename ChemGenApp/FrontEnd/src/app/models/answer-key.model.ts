@@ -123,12 +123,6 @@ export class AnswerKey {
 
     // Display the solubility when loaded by default
     this.findSolubility = true;
-
-    // Default the Coefficients to 1
-    this.reactant1Coefficient = 1;
-    this.reactant2Coefficient = 1;
-    this.product1Coefficient = 1;
-    this.product2Coefficient = 1;
   }
 
   // Sets the subscripts of the elements
@@ -213,6 +207,12 @@ export class AnswerKey {
     console.log("Began Balance Equation");
     /* */
 
+    // Default the Coefficients to 1
+    this.reactant1Coefficient = 1;
+    this.reactant2Coefficient = 1;
+    this.product1Coefficient = 1;
+    this.product2Coefficient = 1;
+    
     // Determines the amount of cations and anions in each molecule based on subscript and coefficient
     // This keeps track of how many there are in each molecule, and checks that they all are the same.
     let reactant1CationAmount: number = this.reactant1CationSubscript * this.reactant1Coefficient;
@@ -227,8 +227,9 @@ export class AnswerKey {
     /* Debug, add/remove the * / here to enable/disable the code -> * /
     console.log("The following data is printed for debug purposes, please disable this block in answer-key.model.ts if you are not debugging the system.");
     console.log("Finished assigning variables and beginning while loop");
+    */
     let x: number = 0;
-    /* */
+   
 
     // While loops tests that the amounts on either side of the equation are equal
     while (
@@ -238,9 +239,10 @@ export class AnswerKey {
       reactant2AnionAmount !== product1AnionAmount
     ) {
 
-      /* Debug, add/remove the * / here to enable/disable the code -> * /
+      /* Debug, add/remove the here to enable/disable the code ->
       console.log("The following data is printed for debug purposes, please disable this block in answer-key.model.ts if you are not debugging the system.");
-      x++;
+      *//*
+      if (x <= 10) {
       console.log("Beginning loop itteration " + x);
       console.log("Stored Data: ");
       console.log("reactant1CationAmount: " + reactant1CationAmount);
@@ -251,7 +253,12 @@ export class AnswerKey {
       console.log("product1AnionAmount: " + product1AnionAmount);
       console.log("reactant2AnionAmount: " + reactant2AnionAmount);
       console.log("product2AnionAmount: " + product2AnionAmount);
-      /* */
+      x++;
+      }
+      else
+        break;
+      */
+      
 
       // Tests if cation amounts are the same
       if (reactant1CationAmount !== product1CationAmount) {
@@ -266,20 +273,9 @@ export class AnswerKey {
           reactant1CationAmount = this.reactant1CationSubscript * this.reactant1Coefficient;
           reactant1AnionAmount = this.reactant1AnionSubscript * this.reactant1Coefficient;
         }
-      // Tests if cation amounts are the same
-      } else if (reactant2CationAmount !== product2CationAmount) {
-        // If not the same test which is bigger and increase the appropriate coefficient
-        if (reactant2CationAmount > product2CationAmount) {
-          this.product2Coefficient *= reactant2CationAmount / product2CationAmount;
-          product2CationAmount = this.reactant2CationSubscript * this.reactant2Coefficient;
-          product2AnionAmount = this.product2AnionSubscript * this.product2Coefficient;
-        } else {
-          this.reactant2Coefficient *= product2CationAmount / reactant2CationAmount;
-          reactant2CationAmount = this.reactant2CationSubscript * this.reactant2Coefficient;
-          reactant2AnionAmount = this.reactant2AnionSubscript * this.reactant2Coefficient;
-        }
+      }
       // Tests if anion amounts are the same
-      } else if (reactant1AnionAmount !== product2AnionAmount) {
+      if (reactant1AnionAmount !== product2AnionAmount) {
         // If not the same test which is bigger and increase the appropriate coefficient
         if (reactant1AnionAmount > product2AnionAmount) {
           this.product2Coefficient *= reactant1AnionAmount / product2AnionAmount;
@@ -290,8 +286,22 @@ export class AnswerKey {
           reactant1CationAmount = this.reactant1CationSubscript * this.reactant1Coefficient;
           reactant1AnionAmount = this.reactant1AnionSubscript * this.reactant1Coefficient;
         }
+      }
+      // Tests if cation amounts are the same
+      if (reactant2CationAmount !== product2CationAmount) {
+        // If not the same test which is bigger and increase the appropriate coefficient
+        if (reactant2CationAmount > product2CationAmount) {
+          this.product2Coefficient *= reactant2CationAmount / product2CationAmount;
+          product2CationAmount = this.reactant2CationSubscript * this.reactant2Coefficient;
+          product2AnionAmount = this.product2AnionSubscript * this.product2Coefficient;
+        } else {
+          this.reactant2Coefficient *= product2CationAmount / reactant2CationAmount;
+          reactant2CationAmount = this.reactant2CationSubscript * this.reactant2Coefficient;
+          reactant2AnionAmount = this.reactant2AnionSubscript * this.reactant2Coefficient;
+        }
+      }
       // Tests if anion amounts are the same
-      } else if (reactant2AnionAmount !== product1AnionAmount) {
+      if (reactant2AnionAmount !== product1AnionAmount) {
         // If not the same test which is bigger and increase the appropriate coefficient
         if (reactant2AnionAmount > product1AnionAmount) {
           this.product1Coefficient *= reactant2AnionAmount / product1AnionAmount;
@@ -314,6 +324,16 @@ export class AnswerKey {
     console.log("The following data is printed for debug purposes, please disable this block in answer-key.model.ts if you are not debugging the system.");
     console.log("Finished main loop and beginning fixDecimalCoefficients");
     /* */
+      console.log("End Loop");
+      console.log("Stored Data: ");
+      console.log("reactant1CationAmount: " + reactant1CationAmount);
+      console.log("product1CationAmount: " + product1CationAmount);
+      console.log("reactant2CationAmount: " + reactant2CationAmount);
+      console.log("product2CationAmount: " + product2CationAmount);
+      console.log("reactant1AnionAmount: " + reactant1AnionAmount);
+      console.log("product1AnionAmount: " + product1AnionAmount);
+      console.log("reactant2AnionAmount: " + reactant2AnionAmount);
+      console.log("product2AnionAmount: " + product2AnionAmount);
 
     // As there may be decimal coefficients, this needs to be corrected right after balancing.
     this.fixDecimalCoefficients();
