@@ -324,17 +324,18 @@ export class AnswerKey {
     console.log("The following data is printed for debug purposes, please disable this block in answer-key.model.ts if you are not debugging the system.");
     console.log("Finished main loop and beginning fixDecimalCoefficients");
     /* */
-      console.log("End Loop");
-      console.log("Stored Data: ");
-      console.log("reactant1CationAmount: " + reactant1CationAmount);
-      console.log("product1CationAmount: " + product1CationAmount);
-      console.log("reactant2CationAmount: " + reactant2CationAmount);
-      console.log("product2CationAmount: " + product2CationAmount);
-      console.log("reactant1AnionAmount: " + reactant1AnionAmount);
-      console.log("product1AnionAmount: " + product1AnionAmount);
-      console.log("reactant2AnionAmount: " + reactant2AnionAmount);
-      console.log("product2AnionAmount: " + product2AnionAmount);
-
+    /* Debug, add/remove the * / here to enable/disable the code -> * /
+    console.log("End Loop");
+    console.log("Stored Data: ");
+    console.log("reactant1CationAmount: " + reactant1CationAmount);
+    console.log("product1CationAmount: " + product1CationAmount);
+    console.log("reactant2CationAmount: " + reactant2CationAmount);
+    console.log("product2CationAmount: " + product2CationAmount);
+    console.log("reactant1AnionAmount: " + reactant1AnionAmount);
+    console.log("product1AnionAmount: " + product1AnionAmount);
+    console.log("reactant2AnionAmount: " + reactant2AnionAmount);
+    console.log("product2AnionAmount: " + product2AnionAmount);
+    /* */
     // As there may be decimal coefficients, this needs to be corrected right after balancing.
     this.fixDecimalCoefficients();
   }
@@ -485,7 +486,7 @@ export class AnswerKey {
   // It generates each item's solubility information.
   public solubilityGeneration() {
 
-    /* Debug add/remove the space in the * / to enable/disable the debug code -> */
+    /* Debug add/remove the space in the * / to enable/disable the debug code -> * /
     console.log("solubilityGeneration() Began");
     console.log(this.findSolubility);
     console.log("Cation1 " + this.cation1SolubilityData);
@@ -557,7 +558,7 @@ export class AnswerKey {
       this.yieldProduct2 = this.molesP2FromR1 * this.product2Weight;
 
       // calculate the grams used, remaining, and the sum of all masses
-      this.gramsUsed = (this.moleRatioR1toR2 * this.molesReactant1) * this.reactant2Weight;
+      this.gramsUsed = (this.moleRatioR2toR1 * this.molesReactant1) * this.reactant2Weight;
       this.gramsRemaining = this.grams2 - this.gramsUsed;
       this.sumOfAll = (this.gramsRemaining + this.yieldProduct1 + this.yieldProduct2);
 
@@ -572,7 +573,7 @@ export class AnswerKey {
       this.yieldProduct2 = this.molesP2FromR2 * this.product2Weight;
 
       // calculate the grams used, remaining, and the sum of all masses
-      this.gramsUsed = (this.moleRatioR2toR1 * this.molesReactant2) * this.reactant1Weight;
+      this.gramsUsed = (this.moleRatioR1toR2 * this.molesReactant2) * this.reactant1Weight;
       this.gramsRemaining = this.grams1 - this.gramsUsed;
       this.sumOfAll = (this.gramsRemaining + this.yieldProduct1 + this.yieldProduct2);
 
@@ -598,5 +599,140 @@ export class AnswerKey {
     // Product 2
     this.molesP2FromR1 = this.molesReactant1 * this.moleRatioP2toR1;
     this.molesP2FromR2 = this.molesReactant2 * this.moleRatioP2toR2;
+  }
+
+  // This method is a log method used purely to print out the current state of the class
+  // Any calls to this method are to be used only for debug purposes.
+  // It prints out ALL class-wide variables, and therefore floods the console when used.
+  // Please disable this method after debug is over.
+  public printVariablesDEBUG(): void {
+    
+    console.log("printVariablesDEBUG() called, printing answer-key.model.ts class variable values: ");
+    console.log();
+    
+    // Boolean data for searching purposes.
+    console.log("Display Key: " + this.displayKey);
+    console.log("Find Solubility: " + this.findSolubility);
+    console.log();
+
+    // Reactant 1
+    console.log("Anion 1: " + this.anion1);
+    console.log("Cation 1: " + this.cation1);
+    console.log("Grams 1: " + this.grams1);
+    console.log();
+
+    // Reactant 2
+    console.log("Anion 2: " + this.anion2);
+    console.log("Cation 2: " + this.cation2);
+    console.log("Grams 2: " + this.grams2);
+    console.log();
+
+    // Calculated Data
+    console.log("Cation 1 Weight: " + this.cation1Weight);
+    console.log("Anion 1 Weight: " + this.anion1Weight);
+    console.log("Cation 2 Weight: " + this.cation2Weight);
+    console.log("Anion 2 Weight: " + this.anion2Weight);
+    console.log();
+
+    // Charges of Ions
+    console.log("Cation 1 Charge: " + this.cation1Charge);
+    console.log("Anion 1 Charge: " + this.anion1Charge);
+    console.log("Cation 2 Charge: " + this.cation2Charge);
+    console.log("Anion 2 Charge: " + this.anion2Charge);
+    console.log();
+
+    // Coalesced Molecular Data (includes substrings, but not the solubility)
+    console.log("Reactant 1: " + this.reactant1);
+    console.log("Reactant 2: " + this.reactant2);
+    console.log("Product 1: " + this.product1);
+    console.log("Product 2: " + this.product2);
+    console.log();
+
+    // Reactant Subscripts
+    console.log("Reactant 1 Anion Subscript: " + this.reactant1AnionSubscript);
+    console.log("Reactant 1 Cation Subscript: " + this.reactant1CationSubscript);
+    console.log("Reactant 2 Anion Subscript: " + this.reactant2AnionSubscript);
+    console.log("Reactant 2 Cation Subscript: " + this.reactant2CationSubscript);
+    console.log();
+
+    // Product Subscripts
+    console.log("Product 1 Anion Subscript: " + this.product1AnionSubscript);
+    console.log("Product 1 Cation Subscript: " + this.product1CationSubscript);
+    console.log("Product 2 Anion Subscript: " + this.product2AnionSubscript);
+    console.log("Product 2 Cation Subscript: " + this.product2CationSubscript);
+    console.log();
+
+    // Reactant Coefficients
+    console.log("Reactant 1 Coefficient: " + this.reactant1Coefficient);
+    console.log("Reactant 2 Coefficient: " + this.reactant2Coefficient);
+    console.log();
+
+    // Product Coefficients
+    console.log("Product 1 Coefficient: " + this.product1Coefficient);
+    console.log("Product 2 Coefficient: " + this.product2Coefficient);
+    console.log();
+
+    // Formula Weights (Molar Mass)
+    // Reactants
+    console.log("Reactant 1 Formula Weight: " + this.reactant1Weight);
+    console.log("Reactant 2 Formula Weight: " + this.reactant2Weight);
+    console.log();
+
+    // Products
+    console.log("Product 1 Formula Weight: " + this.product1Weight);
+    console.log("Product 2 Formula Weight: " + this.product2Weight);
+    console.log();
+
+    // Mole Ratios of Products to Reactants
+    console.log("Mole Ratio Product 1 to Reactant 1: " + this.moleRatioP1toR1);
+    console.log("Mole Ratio Product 1 to Reactant 2: " + this.moleRatioP1toR2);
+    console.log("Mole Ratio Product 2 to Reactant 1: " + this.moleRatioP2toR1);
+    console.log("Mole Ratio Product 2 to Reactant 2: " + this.moleRatioP2toR2);
+    console.log();
+
+    // Reactant Mole Rations
+    console.log("Mole Ratio Reactant 1 to Reactant 2: " + this.moleRatioR1toR2);
+    console.log("Mole Ratio Reactant 2 to Reactant 1: " + this.moleRatioR2toR1);
+    console.log();
+
+    // Limiting Reactant Information
+    console.log("Limiting Reactant: " + this.limitingReactant);
+    console.log("Non Limiting Reactant: " + this.nonLimitingReactant);
+    console.log();
+
+    // Reaction Yeilds
+    console.log("Yield of Product 1: " + this.yieldProduct1);
+    console.log("Yield of Product 2: " + this.yieldProduct2);
+    console.log();
+
+    // Grams
+    console.log("Grams Used of Non Limiting Reactant: " + this.gramsUsed);
+    console.log("Grams Remaining of Non Limiting Reactant: " + this.gramsRemaining);
+    console.log("Sum of All: " + this.sumOfAll);
+    console.log();
+
+    // Moles of each Reactant
+    console.log("Moles of Reactant 1: " + this.molesReactant1);
+    console.log("Moles of Reactant 2: " + this.molesReactant2);
+    console.log();
+    
+    // Potential moles of Products from each reactant
+    console.log("Moles of Product 1 from Reactant 1: " + this.molesP1FromR1);
+    console.log("Moles of Product 1 from Reactant 2: " + this.molesP1FromR2);
+    console.log("Moles of Product 2 from Reactant 1: " + this.molesP2FromR1);
+    console.log("Moles of Product 2 from Reactant 2: " + this.molesP2FromR2);
+    console.log();
+
+    // Solubility Data input
+    console.log("Cation 1 Solubility Data: " + this.cation1SolubilityData);
+    console.log("Cation 2 Solubility Data: " + this.cation2SolubilityData);
+    console.log();
+
+    // Saved Solubility Output
+    console.log("Reactant 1 Solubility: " + this.reactant1Solubility);
+    console.log("Reactant 2 Solubility: " + this.reactant2Solubility);
+    console.log("Product 1 Solubility: " + this.product1Solubility);
+    console.log("Product 2 Solubility: " + this.product2Solubility);
+    console.log();
   }
 }
