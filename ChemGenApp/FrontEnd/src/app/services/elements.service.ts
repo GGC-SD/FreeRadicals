@@ -16,4 +16,13 @@ export class ElementsService {
   public getAnions() {
     return this.http.get('http://localhost:4000/anions');
   }
+
+  // This is to grab data that is in a test format so that we can verify different setups.
+  public getSolubilityTest() {
+    return this.http.get('http://localhost:4000/solubility1');
+  }
+
+  public getSolubility() {
+    return this.http.get('http://localhost:4000/solubility');
+  }
 }
