@@ -108,7 +108,7 @@ export class StoichiometryFormComponent implements OnInit {
       }
     }
 
-    /* Debug, add/remove a space in the * / here to enable/disable the code -> */
+    /* Debug, add/remove a space in the * / here to enable/disable the code -> * /
     console.log("Solubility Test: " + this.solubilityTest);
     console.log("Beginning Solubility Generation");
     /* */
@@ -155,6 +155,9 @@ export class StoichiometryFormComponent implements OnInit {
 
     // determines the limiting reactant
     this.answer.determineLimitingReactant();
+
+    // Prints all variables stored in answer into the console. DEBUG COMMAND, PLEASE COMMENT OUT IF NOT IN USE
+    // this.answer.printVariablesDEBUG();
 
     // display the answer key
     this.answer.displayKey = true;
