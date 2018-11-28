@@ -1,0 +1,35 @@
+<div class="header">Answer Key</div>
+<ng-container *ngIf="answer.displayKey">
+  <br>
+  <ng-container *ngIf="answer.reactant1Coefficient > 1">{{ answer.reactant1Coefficient }}</ng-container>{{ answer.reactant1 }}{{ answer.reactant1Solubility }} + <ng-container *ngIf="answer.reactant2Coefficient > 1">{{ answer.reactant2Coefficient }}</ng-container>{{ answer.reactant2 }}{{ answer.reactant2Solubility }} => <ng-container *ngIf="answer.product1Coefficient > 1">{{ answer.product1Coefficient }}</ng-container>{{ answer.product1 }}{{ answer.product1Solubility }} + <ng-container *ngIf="answer.product2Coefficient > 1">{{ answer.product2Coefficient }}</ng-container>{{ answer.product2 }}{{ answer.product2Solubility }}
+  <br><br>
+  mole ratio of {{ answer.product1 }} to {{ answer.reactant1 }} is: {{ answer.moleRatioP1toR1Out }}
+  <br>
+  mole ratio of {{ answer.product1 }} to {{ answer.reactant2 }} is: {{ answer.moleRatioP1toR2Out }}
+  <br>
+  mole ratio of {{ answer.product2 }} to {{ answer.reactant1 }} is: {{ answer.moleRatioP2toR1Out }}
+  <br>
+  mole ratio of {{ answer.product2 }} to {{ answer.reactant2 }} is: {{ answer.moleRatioP2toR2Out }}
+  <br><br>
+  The formula weight for {{ answer.product1 }} is: {{ answer.product1WeightOut }}
+  <br>
+  The formula weight for {{ answer.product2 }} is: {{ answer.product2WeightOut }}
+  <br><br>
+  {{ answer.molesReactant1Out }} moles of {{ answer.reactant1 }} yields {{ answer.molesP2FromR1Out }} moles of {{ answer.product2 }}
+  <br>
+  {{ answer.molesReactant1Out }} moles of {{ answer.reactant1 }} yields {{ answer.molesP1FromR1Out }} moles of {{ answer.product1 }}
+  <br>
+  {{ answer.molesReactant2Out }} moles of {{ answer.reactant2 }} yields {{ answer.molesP2FromR2Out }} moles of {{ answer.product2 }}
+  <br>
+  {{ answer.molesReactant2Out }} moles of {{ answer.reactant2 }} yields {{ answer.molesP1FromR2Out }} moles of {{ answer.product1 }}
+  <br><br>
+  The limiting reactant is: {{ answer.limitingReactant }}
+  <br>
+  {{ answer.limitingReactant }} yields {{ answer.yieldProduct1Out }} grams of {{ answer.product1 }} and {{ answer.yieldProduct2Out }} grams of {{ answer.product2 }}
+  <br>
+  The grams used up is: {{ answer.gramsUsedOut }} g
+  <br>
+  The remaining amount of {{ answer.nonLimitingReactant }} is {{ answer.gramsRemainingOut }} g
+  <br>
+  the sum of excess plus used reagents ( {{ answer.sumOfAllOut }} g) ought to equal the grams of compound 1 ({{ answer.grams1 }} g) and grams of compound 2 ({{ answer.grams2 }} g)
+</ng-container>
