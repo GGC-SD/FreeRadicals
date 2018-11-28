@@ -4,120 +4,76 @@
     "name": "Bromine",
     "mass": 79.904,
     "charge": -1,
-<<<<<<< HEAD
 	"polyatomic":false
-=======
-    "polyatomic": false
->>>>>>> William
   },
   {
     "symbol": "I",
     "name": "Iodine",
     "mass": 126.904,
     "charge": -1,
-<<<<<<< HEAD
 	"polyatomic":false
-=======
-    "polyatomic": false
->>>>>>> William
   },
   {
     "symbol": "Cl",
     "name": "Chlorine",
     "mass": 35.453,
     "charge": -1,
-<<<<<<< HEAD
 	"polyatomic":false	
-=======
-    "polyatomic": false
->>>>>>> William
   },
   {
     "symbol": "NO\u2083",
     "name": "Nitrate",
     "mass": 61.990,
     "charge": -1,
-<<<<<<< HEAD
 	"polyatomic":true 
-=======
-    "polyatomic": true
->>>>>>> William
   },
   {
     "symbol": "CO\u2083",
     "name": "Carbonate",
     "mass": 60.009,
     "charge": -2,
-<<<<<<< HEAD
 	"polyatomic":true 
-=======
-    "polyatomic": true
->>>>>>> William
   },
   {
     "symbol": "ClO\u2083",
     "name": "Chlorate",
     "mass": 83.451,
     "charge": -1,
-<<<<<<< HEAD
 	"polyatomic":true 
-=======
-    "polyatomic": true
->>>>>>> William
   },
   {
     "symbol": "OH",
     "name": "Hydroxide",
     "mass": 17.007,
     "charge": -1,
-<<<<<<< HEAD
 	"polyatomic":true 
-=======
-    "polyatomic": true
->>>>>>> William
   },
   {
     "symbol": "O\u2082",
     "name": "Peroxide",
     "mass": 31.999,
     "charge": -2,
-<<<<<<< HEAD
 	"polyatomic":true 
-=======
-    "polyatomic": true
->>>>>>> William
   },
   {
     "symbol": "PO\u2084",
     "name": "Phosphate",
     "mass": 94.971,
     "charge": -3,
-<<<<<<< HEAD
 	"polyatomic":true 
-=======
-    "polyatomic": true
->>>>>>> William
   },
   {
     "symbol": "SO\u2084",
     "name": "Sulfate",
     "mass": 96.063,
     "charge": -2,
-<<<<<<< HEAD
 	"polyatomic":true 
-=======
-    "polyatomic": true
->>>>>>> William
   },
   {
     "symbol": "Cr\u2082O\u2087",
     "name": "Dichromate",
     "mass": 215.988,
     "charge": -2,
-<<<<<<< HEAD
 	"polyatomic":true 
-=======
-    "polyatomic": true
->>>>>>> William
   }
 ]

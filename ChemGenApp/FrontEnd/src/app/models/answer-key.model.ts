@@ -168,8 +168,6 @@ export class AnswerKey {
 
     // Display the solubility when loaded by default
     this.findSolubility = true;
-<<<<<<< HEAD
-=======
 
     // Default the Coefficients to 1
     this.reactant1Coefficient = 1;
@@ -179,7 +177,6 @@ export class AnswerKey {
 
     // Default the sigFigs to 4
     this.sigFigs = 4;
->>>>>>> William
   }
 
   // Sets the subscripts of the elements
@@ -199,9 +196,144 @@ export class AnswerKey {
   // Groups the cations, anions, and subscripts to create the molecules as a string
   public setMolecules(): void {
 
+    // This block determines the correct way to load Reactant 1
+    if(this.cation1Polyatomic && (this.reactant1CationSubscript > 1)) {
+      // If cation1 is polyatomic and has a reactant 1 subscript of greater than 1...
+      if(this.anion1Polyatomic && (this.reactant1AnionSubscript > 1)) {
+        // and anion1 is polyatomic and has a reactant 1 subscript greater than 1...
+
+        // add parenthesis around all ions
+
+        this.reactant1 = '(' + this.cation1 + ')' + this.setSubScript(this.reactant1CationSubscript) + 
+          '(' + this.anion1 + ')' + this.setSubScript(this.reactant1AnionSubscript);
+      } else {
+        // and anion1 isn't polyatomic OR doesn't have a reactant1 subscript greather than 1...
+
+        // only put parenthesis around the cation
+        this.reactant1 = '(' + this.cation1 + ')' + this.setSubScript(this.reactant1CationSubscript) + 
+          this.anion1 + this.setSubScript(this.reactant1AnionSubscript);
+      }
+    } else {
+      // If cation1 isn't plyatomic OR doesn't have a reactant 1 subscript greater than 1...
+      if(this.anion1Polyatomic && (this.reactant1AnionSubscript > 1)) {
+        // and anion1 is polyatomic and has a reactant 1 subscript greater than 1...
+
+        // add parenthesis around all ions
+
+        this.reactant1 = '' + this.cation1 + this.setSubScript(this.reactant1CationSubscript) + 
+          '(' + this.anion1 + ')' + this.setSubScript(this.reactant1AnionSubscript);
+      } else {
+        // and anion1 isn't polyatomic OR doesn't have a reactant1 subscript greather than 1...
+
+        // only put parenthesis around the cation
+        this.reactant1 = '' + this.cation1 + this.setSubScript(this.reactant1CationSubscript) + 
+          this.anion1 + this.setSubScript(this.reactant1AnionSubscript);
+      }
+    }
+    
+    // This block determines the correct way to load Reactant 2
+    if(this.cation2Polyatomic && (this.reactant2CationSubscript > 1)) {
+      // If cation2 is polyatomic and has a reactant 2 subscript of greater than 1...
+      if(this.anion2Polyatomic && (this.reactant2AnionSubscript > 1)) {
+        // and anion2 is polyatomic and has a reactant 2 subscript greater than 1...
+
+        // add parenthesis around all ions
+        this.reactant2 = '(' + this.cation2 + ')' + this.setSubScript(this.reactant2CationSubscript) + 
+          '(' + this.anion2 + ')' + this.setSubScript(this.reactant2AnionSubscript);
+      } else {
+        // and anion2 isn't polyatomic OR doesn't have a reactant 2 subscript greather than 1...
+
+        // only put parenthesis around the cation
+        this.reactant2 = '(' + this.cation2 + ')' + this.setSubScript(this.reactant2CationSubscript) + 
+          this.anion2 + this.setSubScript(this.reactant2AnionSubscript);
+      }
+    } else {
+      // If cation2 isn't plyatomic OR doesn't have a reactant 2 subscript greater than 1...
+      if(this.anion2Polyatomic && (this.reactant2AnionSubscript > 1)) {
+        // and anion2 is polyatomic and has a reactant 2 subscript greater than 1...
+
+        // add parenthesis around all ions
+        this.reactant2 = '' + this.cation2 + this.setSubScript(this.reactant2CationSubscript) + 
+          '(' + this.anion2 + ')' + this.setSubScript(this.reactant2AnionSubscript);
+      } else {
+        // and anion2 isn't polyatomic OR doesn't have a reactant 2 subscript greather than 1...
+
+        // only put parenthesis around the cation
+        this.reactant2 = '' + this.cation2 + this.setSubScript(this.reactant2CationSubscript) + 
+          this.anion2 + this.setSubScript(this.reactant2AnionSubscript);
+      }
+    }
+
+    // This block determines the correct way to load Product 1
+    if(this.cation1Polyatomic && (this.product1CationSubscript > 1)) {
+      // If cation1 is polyatomic and has a product 1 subscript of greater than 1...
+      if(this.anion2Polyatomic && (this.product1AnionSubscript > 1)) {
+        // and anion2 is polyatomic and has a product 1 subscript greater than 1...
+
+        // add parenthesis around all ions
+        this.product1 = '(' + this.cation1 + ')' + this.setSubScript(this.product1CationSubscript) + 
+          '(' + this.anion2 + ')' + this.setSubScript(this.product1AnionSubscript);
+      } else {
+        // and anion2 isn't polyatomic OR doesn't have a product 1 subscript greather than 1...
+
+        // only put parenthesis around the cation
+        this.product1 = '(' + this.cation1 + ')' + this.setSubScript(this.product1CationSubscript) + 
+          this.anion2 + this.setSubScript(this.product1AnionSubscript);
+      }
+    } else {
+      // If cation1 isn't plyatomic OR doesn't have a product 1 subscript greater than 1...
+      if(this.anion2Polyatomic && (this.product1AnionSubscript > 1)) {
+        // and anion2 is polyatomic and has a product 1 subscript greater than 1...
+
+        // add parenthesis around all ions
+        this.product1 = '' + this.cation1 + this.setSubScript(this.product1CationSubscript) + 
+          '(' + this.anion2 + ')' + this.setSubScript(this.product1AnionSubscript);
+      } else {
+        // and anion2 isn't polyatomic OR doesn't have a product 1 subscript greather than 1...
+
+        // only put parenthesis around the cation
+        this.product1 = '' + this.cation1 + this.setSubScript(this.product1CationSubscript) + 
+          this.anion2 + this.setSubScript(this.product1AnionSubscript);
+      }
+    }
+
+    // This block determines the correct way to load Product 2
+    if(this.cation2Polyatomic && (this.product2CationSubscript > 1)) {
+      // If cation2 is polyatomic and has a product 2 subscript of greater than 1...
+      if(this.anion1Polyatomic && (this.product2AnionSubscript > 1)) {
+        // and anion1 is polyatomic and has a product 2 subscript greater than 1...
+
+        // add parenthesis around all ions
+        this.product2 = '(' + this.cation2 + ')' + this.setSubScript(this.product2CationSubscript) + 
+          '(' + this.anion1 + ')' + this.setSubScript(this.product2AnionSubscript);
+      } else {
+        // and anion1 isn't polyatomic OR doesn't have a product 2 subscript greather than 1...
+
+        // only put parenthesis around the cation
+        this.product2 = '(' + this.cation2 + ')' + this.setSubScript(this.product2CationSubscript) + 
+          this.anion1 + this.setSubScript(this.product2AnionSubscript);
+      }
+    } else {
+      // If cation2 isn't plyatomic OR doesn't have a product 2 subscript greater than 1...
+      if(this.anion1Polyatomic && (this.product2AnionSubscript > 1)) {
+        // and anion1 is polyatomic and has a product 2 subscript greater than 1...
+
+        // add parenthesis around all ions
+        this.product2 = '' + this.cation2 + this.setSubScript(this.product2CationSubscript) + 
+          '(' + this.anion1 + ')' + this.setSubScript(this.product2AnionSubscript);
+      } else {
+        // and anion1 isn't polyatomic OR doesn't have a product 2 subscript greather than 1...
+
+        // only put parenthesis around the cation
+        this.product2 = '' + this.cation2 + this.setSubScript(this.product2CationSubscript) + 
+          this.anion1 + this.setSubScript(this.product2AnionSubscript);
+      }
+    }
+    
+    /* Original code (without the polyatomic parenthesis)
     this.reactant1 = '' + this.cation1 + this.setSubScript(this.reactant1CationSubscript) + this.anion1 +
       this.setSubScript(this.reactant1AnionSubscript);
-    
+
     this.reactant2 = '' + this.cation2 + this.setSubScript(this.reactant2CationSubscript) + this.anion2 +
       this.setSubScript(this.reactant2AnionSubscript);
     
@@ -210,6 +342,7 @@ export class AnswerKey {
 
     this.product2 = '' + this.cation2 + this.setSubScript(this.product2CationSubscript) + this.anion1 +
       this.setSubScript(this.product2AnionSubscript);
+    */
   }
 
   // Calulates formula weights based on charges of opposite bonded element

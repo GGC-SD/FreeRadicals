@@ -58,6 +58,7 @@ export class StoichiometryFormComponent implements OnInit {
       if (this.answer.anion1 === this.anions[i].symbol) {
         this.answer.anion1Weight = this.anions[i].mass;
         this.answer.anion1Charge = this.anions[i].charge;
+        this.answer.anion1Polyatomic = this.anions[i].polyatomic;
       }
     }
 
@@ -67,6 +68,7 @@ export class StoichiometryFormComponent implements OnInit {
       if (this.answer.cation1 === this.cations[i].symbol) {
         this.answer.cation1Weight = this.cations[i].mass;
         this.answer.cation1Charge = this.cations[i].charge;
+        this.answer.cation1Polyatomic = this.cations[i].polyatomic;
       }
     }
     this.answer.grams1 = this.formGroup.get('grams1').value;
@@ -77,6 +79,7 @@ export class StoichiometryFormComponent implements OnInit {
       if (this.answer.anion2 === this.anions[i].symbol) {
         this.answer.anion2Weight = this.anions[i].mass;
         this.answer.anion2Charge = this.anions[i].charge;
+        this.answer.anion2Polyatomic = this.anions[i].polyatomic;
       }
     }
 
@@ -86,6 +89,7 @@ export class StoichiometryFormComponent implements OnInit {
       if (this.answer.cation2 === this.cations[i].symbol) {
         this.answer.cation2Weight = this.cations[i].mass;
         this.answer.cation2Charge = this.cations[i].charge;
+        this.answer.cation2Polyatomic = this.cations[i].polyatomic;
       }
     }
     this.answer.grams2 = this.formGroup.get('grams2').value;
