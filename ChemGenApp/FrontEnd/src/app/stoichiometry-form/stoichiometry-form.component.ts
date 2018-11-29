@@ -192,4 +192,8 @@ export class StoichiometryFormComponent implements OnInit {
       grams2: ''
     });
   }
+
+  private resetAnswerKey(): void {
+     this.answer.resetKey();
+  }
 }

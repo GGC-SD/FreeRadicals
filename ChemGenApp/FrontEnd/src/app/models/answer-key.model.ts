@@ -179,6 +179,165 @@ export class AnswerKey {
     this.sigFigs = 4;
   }
 
+  // Resets AAAAALLLLLLL the variables
+  public resetKey() : void {
+    // Whether or not the output is displayed
+    this.displayKey = false
+
+    // Whether or not to get the solubility data
+    // This is to avoid trying to calculate using empty objects
+    this.findSolubility = true;
+    
+    // This variable is the number of significant figures that the app will calculate to
+    // It is hard-set to 4 for now, but later will be changed to be variable, most likely input from the form
+    this.sigFigs = 4;
+
+    // Inputted data
+    // Reactant 1
+    this.anion1 = '';
+    this.anion1Polyatomic = false; // stores whether anion1 is polyatomic, used to determine parenthesis
+    this.cation1 = '';
+    this.cation1Polyatomic = false; // stores whether cation1 is polyatomic, used to determine parenthesis
+    this.grams1 = 0;
+
+    // Reactant 2
+    this.anion2 = '';
+    this.anion2Polyatomic = false; // stores whether anion2 is polyatomic, used to determine parenthesis
+    this.cation2 = '';
+    this.cation2Polyatomic = false; // stores whether cation2 is polyatomic, used to determine parenthesis
+    this.grams2 = 0;
+
+    // Calculated Data
+    this.cation1Weight = 0;
+    this.anion1Weight = 0;
+    this.cation2Weight = 0;
+    this.anion2Weight = 0;
+
+    // Charges of Ions
+    this.cation1Charge = 0;
+    this.anion1Charge = 0;
+    this.cation2Charge = 0;
+    this.anion2Charge = 0;
+
+    // Coalesced Molecular data (includes substrings, but not the solubility)
+    this.reactant1 = '';
+    this.reactant2 = '';
+    this.product1 = '';
+    this.product2 = '';
+
+    // Reactant Subscripts
+    this.reactant1AnionSubscript = 1;
+    this.reactant1CationSubscript = 1;
+    this.reactant2AnionSubscript = 1;
+    this.reactant2CationSubscript = 1;
+    
+    // Product Subscripts
+    this.product1AnionSubscript = 1;
+    this.product1CationSubscript = 1;
+    this.product2AnionSubscript = 1;
+    this.product2CationSubscript = 1;
+    
+    // Reactant Coefficients
+    this.reactant1Coefficient = 1;
+    this.reactant2Coefficient = 1;
+
+    // Product Coefficients
+    this.product1Coefficient = 1;
+    this.product2Coefficient = 1;
+
+    // Formula Weights (Molar Mass)
+    // Reactants
+    this.reactant1Weight = 0;
+    this.reactant2Weight = 0;
+
+    // Products
+    this.product1Weight = 0;
+    this.product2Weight = 0;
+
+    // Mole Ratios of Products to Reactants
+    this.moleRatioP1toR1 = 0;
+    this.moleRatioP1toR2 = 0;
+    this.moleRatioP2toR1 = 0;
+    this.moleRatioP2toR2 = 0;
+
+    // Reactant Mole Ratios, used in calculations and displayed.
+    this.moleRatioR1toR2 = 0;
+    this.moleRatioR2toR1 = 0;
+
+    // The limiting reactant of the reaction.  This is displayed and determines which numbers in other parts are displayed.
+    this.limitingReactant = '';
+    this.nonLimitingReactant = '';
+
+    // Yield, based on limiting reactant
+    this.yieldProduct1 = 0;
+    this.yieldProduct2 = 0;
+
+    // Grams, dependent on limiting reactant
+    this.gramsUsed = 0;
+    this.gramsRemaining = 0
+
+    // Sum of all remaining masses
+    this.sumOfAll = 0;
+
+    // This is the moles of each item.  This is displayed and used in calculations.
+    // Reactants
+    this.molesReactant1 = 0;
+    this.molesReactant2 = 0;
+    
+    // Products
+    this.molesP1FromR1 = 0;
+    this.molesP2FromR1 = 0;
+    this.molesP1FromR2 = 0;
+    this.molesP2FromR2 = 0;
+
+    // Solubility data input
+    this.cation1SolubilityData = null;
+    this.cation2SolubilityData = null;
+
+    // Actual saved solubility data, used for output onto the html
+    this.reactant1Solubility = '';
+    this.reactant2Solubility = '';
+    this.product1Solubility = '';
+    this.product2Solubility = '';
+
+    // Output Only Data
+    // This data is only saved so that it can be output.  
+    // It utilizes the toPrecision function, so it outputs as a string, and cannot be stored as a number.
+    
+    // Mole Ratios of Products to Reactants
+    this.moleRatioP1toR1Out = '';
+    this.moleRatioP1toR2Out = '';
+    this.moleRatioP2toR1Out = '';
+    this.moleRatioP2toR2Out = '';
+
+    // Formula Weights (Molar Mass)
+    // Products
+    this.product1WeightOut = '';
+    this.product2WeightOut = '';
+
+    // This is the moles of each item.  This is displayed and used in calculations.
+    // Reactants
+    this.molesReactant1Out = '';
+    this.molesReactant2Out = '';
+
+    // Products
+    this.molesP1FromR1Out = '';
+    this.molesP2FromR1Out = '';
+    this.molesP1FromR2Out = '';
+    this.molesP2FromR2Out = '';
+
+    // Grams, dependent on limiting reactant
+    this.gramsUsedOut = '';
+    this.gramsRemainingOut = '';
+
+    // Sum of all remaining masses
+    this.sumOfAllOut = '';
+
+    // Yield, based on limiting reactant
+    this.yieldProduct1Out = '';
+    this.yieldProduct2Out = '';
+  }
+
   // Sets the subscripts of the elements
   public setSubScript(subscript: number): String {
     switch (subscript) {
