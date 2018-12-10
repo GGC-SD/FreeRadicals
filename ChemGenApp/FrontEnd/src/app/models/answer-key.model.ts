@@ -10,16 +10,24 @@ export class AnswerKey {
   // Whether or not to get the solubility data
   // This is to avoid trying to calculate using empty objects
   public findSolubility: boolean;
+  
+  // This variable is the number of significant figures that the app will calculate to
+  // It is hard-set to 4 for now, but later will be changed to be variable, most likely input from the form
+  public sigFigs: number;
 
   // Inputted data
   // Reactant 1
   public anion1: String;
+  public anion1Polyatomic: boolean; // stores whether anion1 is polyatomic, used to determine parenthesis
   public cation1: String;
+  public cation1Polyatomic: boolean; // stores whether cation1 is polyatomic, used to determine parenthesis
   public grams1: number;
 
   // Reactant 2
   public anion2: String;
+  public anion2Polyatomic: boolean; // stores whether anion2 is polyatomic, used to determine parenthesis
   public cation2: String;
+  public cation2Polyatomic: boolean; // stores whether cation2 is polyatomic, used to determine parenthesis
   public grams2: number;
 
   // Calculated Data
@@ -115,6 +123,43 @@ export class AnswerKey {
   public product1Solubility: String;
   public product2Solubility: String;
 
+  // Output Only Data
+  // This data is only saved so that it can be output.  
+  // It utilizes the toPrecision function, so it outputs as a string, and cannot be stored as a number.
+  
+  // Mole Ratios of Products to Reactants
+  public moleRatioP1toR1Out: String;
+  public moleRatioP1toR2Out: String;
+  public moleRatioP2toR1Out: String;
+  public moleRatioP2toR2Out: String;
+
+  // Formula Weights (Molar Mass)
+  // Products
+  public product1WeightOut: String;
+  public product2WeightOut: String;
+
+  // This is the moles of each item.  This is displayed and used in calculations.
+  // Reactants
+  public molesReactant1Out: String;
+  public molesReactant2Out: String;
+
+  // Products
+  public molesP1FromR1Out: String;
+  public molesP2FromR1Out: String;
+  public molesP1FromR2Out: String;
+  public molesP2FromR2Out: String;
+
+  // Grams, dependent on limiting reactant
+  public gramsUsedOut: String;
+  public gramsRemainingOut: String;
+
+  // Sum of all remaining masses
+  public sumOfAllOut: String;
+
+  // Yield, based on limiting reactant
+  public yieldProduct1Out: String;
+  public yieldProduct2Out: String;
+
   // Runs at the beginning (obviously)
   constructor() {
 
@@ -123,6 +168,15 @@ export class AnswerKey {
 
     // Display the solubility when loaded by default
     this.findSolubility = true;
+
+    // Default the Coefficients to 1
+    this.reactant1Coefficient = 1;
+    this.reactant2Coefficient = 1;
+    this.product1Coefficient = 1;
+    this.product2Coefficient = 1;
+
+    // Default the sigFigs to 4
+    this.sigFigs = 4;
   }
 
   // Sets the subscripts of the elements
@@ -142,9 +196,144 @@ export class AnswerKey {
   // Groups the cations, anions, and subscripts to create the molecules as a string
   public setMolecules(): void {
 
+    // This block determines the correct way to load Reactant 1
+    if(this.cation1Polyatomic && (this.reactant1CationSubscript > 1)) {
+      // If cation1 is polyatomic and has a reactant 1 subscript of greater than 1...
+      if(this.anion1Polyatomic && (this.reactant1AnionSubscript > 1)) {
+        // and anion1 is polyatomic and has a reactant 1 subscript greater than 1...
+
+        // add parenthesis around all ions
+
+        this.reactant1 = '(' + this.cation1 + ')' + this.setSubScript(this.reactant1CationSubscript) + 
+          '(' + this.anion1 + ')' + this.setSubScript(this.reactant1AnionSubscript);
+      } else {
+        // and anion1 isn't polyatomic OR doesn't have a reactant1 subscript greather than 1...
+
+        // only put parenthesis around the cation
+        this.reactant1 = '(' + this.cation1 + ')' + this.setSubScript(this.reactant1CationSubscript) + 
+          this.anion1 + this.setSubScript(this.reactant1AnionSubscript);
+      }
+    } else {
+      // If cation1 isn't plyatomic OR doesn't have a reactant 1 subscript greater than 1...
+      if(this.anion1Polyatomic && (this.reactant1AnionSubscript > 1)) {
+        // and anion1 is polyatomic and has a reactant 1 subscript greater than 1...
+
+        // add parenthesis around all ions
+
+        this.reactant1 = '' + this.cation1 + this.setSubScript(this.reactant1CationSubscript) + 
+          '(' + this.anion1 + ')' + this.setSubScript(this.reactant1AnionSubscript);
+      } else {
+        // and anion1 isn't polyatomic OR doesn't have a reactant1 subscript greather than 1...
+
+        // only put parenthesis around the cation
+        this.reactant1 = '' + this.cation1 + this.setSubScript(this.reactant1CationSubscript) + 
+          this.anion1 + this.setSubScript(this.reactant1AnionSubscript);
+      }
+    }
+    
+    // This block determines the correct way to load Reactant 2
+    if(this.cation2Polyatomic && (this.reactant2CationSubscript > 1)) {
+      // If cation2 is polyatomic and has a reactant 2 subscript of greater than 1...
+      if(this.anion2Polyatomic && (this.reactant2AnionSubscript > 1)) {
+        // and anion2 is polyatomic and has a reactant 2 subscript greater than 1...
+
+        // add parenthesis around all ions
+        this.reactant2 = '(' + this.cation2 + ')' + this.setSubScript(this.reactant2CationSubscript) + 
+          '(' + this.anion2 + ')' + this.setSubScript(this.reactant2AnionSubscript);
+      } else {
+        // and anion2 isn't polyatomic OR doesn't have a reactant 2 subscript greather than 1...
+
+        // only put parenthesis around the cation
+        this.reactant2 = '(' + this.cation2 + ')' + this.setSubScript(this.reactant2CationSubscript) + 
+          this.anion2 + this.setSubScript(this.reactant2AnionSubscript);
+      }
+    } else {
+      // If cation2 isn't plyatomic OR doesn't have a reactant 2 subscript greater than 1...
+      if(this.anion2Polyatomic && (this.reactant2AnionSubscript > 1)) {
+        // and anion2 is polyatomic and has a reactant 2 subscript greater than 1...
+
+        // add parenthesis around all ions
+        this.reactant2 = '' + this.cation2 + this.setSubScript(this.reactant2CationSubscript) + 
+          '(' + this.anion2 + ')' + this.setSubScript(this.reactant2AnionSubscript);
+      } else {
+        // and anion2 isn't polyatomic OR doesn't have a reactant 2 subscript greather than 1...
+
+        // only put parenthesis around the cation
+        this.reactant2 = '' + this.cation2 + this.setSubScript(this.reactant2CationSubscript) + 
+          this.anion2 + this.setSubScript(this.reactant2AnionSubscript);
+      }
+    }
+
+    // This block determines the correct way to load Product 1
+    if(this.cation1Polyatomic && (this.product1CationSubscript > 1)) {
+      // If cation1 is polyatomic and has a product 1 subscript of greater than 1...
+      if(this.anion2Polyatomic && (this.product1AnionSubscript > 1)) {
+        // and anion2 is polyatomic and has a product 1 subscript greater than 1...
+
+        // add parenthesis around all ions
+        this.product1 = '(' + this.cation1 + ')' + this.setSubScript(this.product1CationSubscript) + 
+          '(' + this.anion2 + ')' + this.setSubScript(this.product1AnionSubscript);
+      } else {
+        // and anion2 isn't polyatomic OR doesn't have a product 1 subscript greather than 1...
+
+        // only put parenthesis around the cation
+        this.product1 = '(' + this.cation1 + ')' + this.setSubScript(this.product1CationSubscript) + 
+          this.anion2 + this.setSubScript(this.product1AnionSubscript);
+      }
+    } else {
+      // If cation1 isn't plyatomic OR doesn't have a product 1 subscript greater than 1...
+      if(this.anion2Polyatomic && (this.product1AnionSubscript > 1)) {
+        // and anion2 is polyatomic and has a product 1 subscript greater than 1...
+
+        // add parenthesis around all ions
+        this.product1 = '' + this.cation1 + this.setSubScript(this.product1CationSubscript) + 
+          '(' + this.anion2 + ')' + this.setSubScript(this.product1AnionSubscript);
+      } else {
+        // and anion2 isn't polyatomic OR doesn't have a product 1 subscript greather than 1...
+
+        // only put parenthesis around the cation
+        this.product1 = '' + this.cation1 + this.setSubScript(this.product1CationSubscript) + 
+          this.anion2 + this.setSubScript(this.product1AnionSubscript);
+      }
+    }
+
+    // This block determines the correct way to load Product 2
+    if(this.cation2Polyatomic && (this.product2CationSubscript > 1)) {
+      // If cation2 is polyatomic and has a product 2 subscript of greater than 1...
+      if(this.anion1Polyatomic && (this.product2AnionSubscript > 1)) {
+        // and anion1 is polyatomic and has a product 2 subscript greater than 1...
+
+        // add parenthesis around all ions
+        this.product2 = '(' + this.cation2 + ')' + this.setSubScript(this.product2CationSubscript) + 
+          '(' + this.anion1 + ')' + this.setSubScript(this.product2AnionSubscript);
+      } else {
+        // and anion1 isn't polyatomic OR doesn't have a product 2 subscript greather than 1...
+
+        // only put parenthesis around the cation
+        this.product2 = '(' + this.cation2 + ')' + this.setSubScript(this.product2CationSubscript) + 
+          this.anion1 + this.setSubScript(this.product2AnionSubscript);
+      }
+    } else {
+      // If cation2 isn't plyatomic OR doesn't have a product 2 subscript greater than 1...
+      if(this.anion1Polyatomic && (this.product2AnionSubscript > 1)) {
+        // and anion1 is polyatomic and has a product 2 subscript greater than 1...
+
+        // add parenthesis around all ions
+        this.product2 = '' + this.cation2 + this.setSubScript(this.product2CationSubscript) + 
+          '(' + this.anion1 + ')' + this.setSubScript(this.product2AnionSubscript);
+      } else {
+        // and anion1 isn't polyatomic OR doesn't have a product 2 subscript greather than 1...
+
+        // only put parenthesis around the cation
+        this.product2 = '' + this.cation2 + this.setSubScript(this.product2CationSubscript) + 
+          this.anion1 + this.setSubScript(this.product2AnionSubscript);
+      }
+    }
+    
+    /* Original code (without the polyatomic parenthesis)
     this.reactant1 = '' + this.cation1 + this.setSubScript(this.reactant1CationSubscript) + this.anion1 +
       this.setSubScript(this.reactant1AnionSubscript);
-    
+
     this.reactant2 = '' + this.cation2 + this.setSubScript(this.reactant2CationSubscript) + this.anion2 +
       this.setSubScript(this.reactant2AnionSubscript);
     
@@ -153,6 +342,7 @@ export class AnswerKey {
 
     this.product2 = '' + this.cation2 + this.setSubScript(this.product2CationSubscript) + this.anion1 +
       this.setSubScript(this.product2AnionSubscript);
+    */
   }
 
   // Calulates formula weights based on charges of opposite bonded element
@@ -169,6 +359,10 @@ export class AnswerKey {
 
     this.reactant2Weight = (this.anion2Weight * this.reactant2AnionSubscript) + 
       (this.cation2Weight * this.reactant2CationSubscript);
+
+    // Set the String output values for display with the correct number of sigfigs
+    this.product1WeightOut = this.precision(this.product1Weight);
+    this.product2WeightOut = this.precision(this.product2Weight);
   }
 
   // Determnes the subscript based on opposing charges
@@ -461,6 +655,12 @@ export class AnswerKey {
     this.moleRatioP2toR1 = this.product2Coefficient / this.reactant1Coefficient;
     this.moleRatioP2toR2 = this.product2Coefficient / this.reactant2Coefficient;
     
+    // Set the String outputs of them so that they can have the correct number of sigfigs:
+    this.moleRatioP1toR1Out = this.precision(this.moleRatioP1toR1);
+    this.moleRatioP1toR2Out = this.precision(this.moleRatioP1toR2);
+    this.moleRatioP2toR1Out = this.precision(this.moleRatioP2toR1);
+    this.moleRatioP2toR2Out = this.precision(this.moleRatioP2toR2);
+
     // These are the ratios between reactants
     this.moleRatioR1toR2 = this.reactant1Coefficient / this.reactant2Coefficient;
     this.moleRatioR2toR1 = this.reactant2Coefficient / this.reactant1Coefficient;
@@ -566,6 +766,15 @@ export class AnswerKey {
       this.limitingReactant = this.reactant1;
       this.nonLimitingReactant = this.reactant2;
 
+      // Set the String outputs so that the correct number of sigfigs can be used
+      this.gramsUsedOut = this.precision(this.gramsUsed);
+      this.gramsRemainingOut = this.precision(this.gramsRemaining);
+      
+      this.sumOfAllOut = this.precision(this.sumOfAll);
+
+      this.yieldProduct1Out = this.precision(this.yieldProduct1);
+      this.yieldProduct2Out = this.precision(this.yieldProduct2);
+
     } else { // otherwise
 
       // Calculate the mass yield
@@ -580,6 +789,16 @@ export class AnswerKey {
       // set the limiting reactant
       this.limitingReactant = this.reactant2;
       this.nonLimitingReactant = this.reactant1;
+
+      // Set the String outputs so that the correct number of sigfigs can be used
+      this.gramsUsedOut = this.precision(this.gramsUsed);
+      this.gramsRemainingOut = this.precision(this.gramsRemaining);
+      
+      this.sumOfAllOut = this.precision(this.sumOfAll);
+
+      this.yieldProduct1Out = this.precision(this.yieldProduct1);
+      this.yieldProduct2Out = this.precision(this.yieldProduct2);
+      
     }
   }
 
@@ -599,6 +818,22 @@ export class AnswerKey {
     // Product 2
     this.molesP2FromR1 = this.molesReactant1 * this.moleRatioP2toR1;
     this.molesP2FromR2 = this.molesReactant2 * this.moleRatioP2toR2;
+
+    // Set the String output variables so that the correct number of sigfigs can be used.
+    this.molesReactant1Out = this.precision(this.molesReactant1);
+    this.molesReactant2Out = this.precision(this.molesReactant2);
+
+    this.molesP1FromR1Out = this.precision(this.molesP1FromR1);
+    this.molesP1FromR2Out = this.precision(this.molesP1FromR2);
+    this.molesP2FromR1Out = this.precision(this.molesP2FromR1);
+    this.molesP2FromR2Out = this.precision(this.molesP2FromR2);
+  }
+
+  // This method is used to generate the strings using the percision
+  // required of a chemistry numbers app
+  private precision(value: Number): String {
+    console.log(value.toPrecision(this.sigFigs));
+    return value.toPrecision(this.sigFigs);
   }
 
   // This method is a log method used purely to print out the current state of the class
