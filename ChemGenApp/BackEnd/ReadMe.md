@@ -1,10 +1,9 @@
-**Installation of Backend Instructions
+# Installation of Backend Instructions
 
-**Notes
-
+## Notes
 Please note that this is subject to change, as we may need more stuff to be installed on the backend later
 
-**Instructions
+## Instructions
 
 1. Navigate to the Backend folder
 2. run npm install babel-cli@6.26.0 
