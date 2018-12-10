@@ -4,7 +4,7 @@
 [FreeRadicals Repo](https://github.com/GGC-SD/FreeRadicals)
 
 ## Progress Tracking Tools
-JIRA or Trello
+JIRA
 
 ## Other Comunication Tools
 [Discord](https://discord.gg/tSE9q34)
@@ -14,3 +14,13 @@ JIRA or Trello
 2. **Trivon Etheridge** :strawberry: - Data Model & Documentation :cancer:
 3. **Bruce Carson** - *Documentation and Data modeler* :virgo:
 4. **William Bullock** - Team Manager/Client Liason and Lead Tester :up:
+
+## Primary Installation Instructions:
+
+Make sure that you do this on every new computer that you are going to be developing on, or running the source code from, as it is necessary to run many of the commands that we use.
+
+1. Go to https://nodejs.org/dist/v8.11.4/
+2. Download the version that is for your device.
+3. install that version of Node.js
+
+This is needed to allow our backend and front end to work and work together.  This is the version that we built around, so if something isn't working, try reverting to this version.
